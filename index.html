@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Khushi's Corner</title>
+<meta name="description" content="Khushi's little corner of the internet: movies, music, sweets, BTS, thoughts and a few tiny games.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one calm column like a scrapbook page; the hero pairs a hello with a little car that drives while the music plays. */
+:root {
+  --paper: #FBF6F4;
+  --surface: #FFFFFF;
+  --ink: #34252D;
+  --muted: #7E6872;
+  --line: #EBDDDA;
+  --rose: #CF6B6E;
+  --rose-soft: #F7E0DB;
+  --candy: #E5679E;
+  --candy-soft: #FCE3EE;
+  --lilac: #8C78C2;
+  --lilac-soft: #EEE8F8;
+  --hit: #6F9E7C;
+  --near: #DDB45A;
+  --miss: #B9A9AE;
+  --on-tile: #FFFFFF;
+  --screen: #1A1418;
+
+  --sky-top: #FBE3D2;
+  --sky-bottom: #F6C3B7;
+  --orb: #FFF1D6;
+  --hill-far: #EDB6AA;
+  --hill-near: #DF9993;
+  --road: #4E3C45;
+  --dash: #F6E3D9;
+  --glass: #FCEDE6;
+  --skin: #A26B52;
+  --hair: #2B1D22;
+  --star-opacity: 0;
+
+  --display: "Young Serif", Georgia, "Times New Roman", serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --step--1: 0.8125rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.75rem;
+  --step-3: clamp(2.4rem, 6vw, 3.6rem);
+  --radius: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --paper: #1C1519;
+    --surface: #261D23;
+    --ink: #F4E8EB;
+    --muted: #B49CA6;
+    --line: #3B2E36;
+    --rose: #EE8F89;
+    --rose-soft: #3E2629;
+    --candy: #F592BE;
+    --candy-soft: #3F2232;
+    --lilac: #B9A7EA;
+    --lilac-soft: #2C2541;
+    --near: #C49D45;
+    --miss: #54444C;
+    --screen: #0E0A0D;
+    --sky-top: #231B3A;
+    --sky-bottom: #4B2C4C;
+    --orb: #F6EBDD;
+    --hill-far: #3D2B46;
+    --hill-near: #2F2137;
+    --road: #130E12;
+    --dash: #6B5560;
+    --glass: #F3D9A8;
+    --star-opacity: 1;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.15; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.label {
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--muted);
+}
+
+/* nav */
+.top { padding-block: 22px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.top .mark { font-family: var(--display); font-size: var(--step-1); text-decoration: none; }
+.top .mark span { color: var(--candy); }
+.top nav { display: flex; gap: 2px; flex-wrap: wrap; }
+.top nav a {
+  font-size: var(--step--1); text-decoration: none; color: var(--muted);
+  padding: 6px 10px; border-radius: 999px; transition: background .2s, color .2s;
+}
+.top nav a:hover { background: var(--candy-soft); color: var(--ink); }
+
+/* hero */
+.hero { display: grid; gap: 40px; padding-block: 28px 64px; align-items: start; }
+@media (min-width: 860px) { .hero { grid-template-columns: 1fr 1.1fr; gap: 56px; } }
+.hello { display: grid; gap: 18px; position: relative; }
+.hello h1 { font-size: var(--step-3); }
+.hello h1 em { font-style: normal; color: var(--rose); }
+.hello p { color: var(--muted); max-width: 40ch; font-size: 1.0625rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-size: var(--step--1); padding: 5px 12px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+  transform: translate(var(--dx, 0px), var(--dy, 0px)); transition: transform .35s ease, border-color .2s;
+}
+.chip:hover { border-color: var(--candy); }
+.load > * { animation: rise .8s cubic-bezier(.2,.7,.2,1) both; }
+.load > *:nth-child(2) { animation-delay: .08s; }
+.load > *:nth-child(3) { animation-delay: .16s; }
+.load > *:nth-child(4) { animation-delay: .24s; }
+.load > *:nth-child(5) { animation-delay: .32s; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+
+/* photo slots: show the photo if it exists, otherwise a labeled placeholder */
+.slot { position: relative; overflow: hidden; background: var(--candy-soft); display: grid; place-items: center; }
+.slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.slot .ph { padding: 12px; text-align: center; display: grid; gap: 4px; justify-items: center; }
+.slot .ph svg { width: 26px; height: 26px; fill: none; stroke: var(--candy); stroke-width: 1.6; }
+.slot .ph code { font-family: var(--mono); font-size: 0.6875rem; color: var(--muted); word-break: break-all; }
+.polaroid {
+  background: var(--surface); padding: 10px 10px 14px; border-radius: 4px; display: grid; gap: 8px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / .06), 0 8px 24px rgb(0 0 0 / .07);
+  transition: transform .35s cubic-bezier(.2,.7,.2,1);
+}
+.polaroid .slot { aspect-ratio: 1; border-radius: 2px; }
+.polaroid figcaption { font-family: var(--display); font-size: .9375rem; text-align: center; }
+.me { width: 168px; transform: rotate(-4deg); justify-self: start; margin: 0; }
+.me:hover { transform: rotate(0deg) scale(1.03); }
+
+/* drive scene */
+.drive { display: grid; gap: 12px; }
+.scene {
+  position: relative; overflow: hidden; border-radius: var(--radius);
+  aspect-ratio: 16 / 8; max-width: 100%; cursor: pointer;
+  background: linear-gradient(var(--sky-top), var(--sky-bottom));
+}
+.orb { position: absolute; top: 14%; right: 14%; width: 13%; aspect-ratio: 1; border-radius: 50%; background: var(--orb); box-shadow: 0 0 40px 10px color-mix(in srgb, var(--orb) 45%, transparent); }
+.stars { position: absolute; inset: 0; opacity: var(--star-opacity); }
+.stars i { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: var(--orb); animation: twinkle 3s ease-in-out infinite; }
+@keyframes twinkle { 50% { opacity: .25; } }
+.layer { position: absolute; left: 0; display: flex; width: 200%; animation: slide linear infinite; }
+.layer svg { width: 50%; height: 100%; display: block; flex: none; }
+.layer.far { bottom: 24%; height: 42%; animation-duration: 38s; }
+.layer.near { bottom: 22%; height: 26%; animation-duration: 16s; }
+@keyframes slide { to { transform: translateX(-50%); } }
+.road { position: absolute; left: 0; right: 0; bottom: 0; height: 24%; background: var(--road); }
+.road::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 46%; height: 3px;
+  background: repeating-linear-gradient(90deg, var(--dash) 0 26px, transparent 26px 60px);
+  animation: dash .6s linear infinite;
+}
+@keyframes dash { to { background-position-x: -60px; } }
+.car { position: absolute; left: 22%; bottom: 13%; width: 34%; animation: bob 1.2s ease-in-out infinite; }
+.car svg { width: 100%; height: auto; display: block; overflow: visible; }
+@keyframes bob { 50% { transform: translateY(-2px); } }
+.wheel { transform-box: fill-box; transform-origin: center; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.notes { position: absolute; left: 44%; bottom: 46%; }
+.notes span { position: absolute; font-size: 15px; color: var(--ink); opacity: 0; animation: float 3.6s ease-out infinite; }
+.notes span:nth-child(2) { animation-delay: 1.2s; left: 10px; }
+.notes span:nth-child(3) { animation-delay: 2.4s; left: -6px; }
+@keyframes float {
+  0% { opacity: 0; transform: translate(0, 0) rotate(-8deg); }
+  20% { opacity: .8; }
+  100% { opacity: 0; transform: translate(26px, -46px) rotate(10deg); }
+}
+.scene.paused *, .scene.paused *::after { animation-play-state: paused; }
+.scene.paused .notes { display: none; }
+.parked {
+  position: absolute; left: 12px; top: 12px; font-family: var(--mono); font-size: .6875rem; letter-spacing: .08em;
+  background: color-mix(in srgb, var(--surface) 85%, transparent); color: var(--ink); padding: 4px 10px; border-radius: 999px;
+}
+.bubble {
+  position: absolute; background: var(--surface); color: var(--ink); font-size: .8125rem; font-weight: 500;
+  padding: 5px 10px; border-radius: 12px; white-space: nowrap; pointer-events: none;
+  box-shadow: 0 4px 14px rgb(0 0 0 / .12); animation: pop 1.6s ease forwards;
+}
+@keyframes pop { 0% { opacity: 0; transform: translateY(6px) scale(.9); } 15%, 75% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(-6px); } }
+
+/* player */
+.player {
+  display: grid; gap: 14px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px 14px;
+}
+.now { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; }
+.cover {
+  width: 48px; height: 48px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--rose), var(--candy), var(--lilac));
+  display: grid; place-items: center;
+}
+.eq { display: flex; gap: 3px; align-items: flex-end; height: 18px; }
+.eq i { width: 3px; background: var(--on-tile); border-radius: 2px; animation: eq .9s ease-in-out infinite; height: 40%; }
+.eq i:nth-child(2) { animation-delay: .2s; } .eq i:nth-child(3) { animation-delay: .4s; } .eq i:nth-child(4) { animation-delay: .1s; }
+@keyframes eq { 50% { height: 100%; } }
+.player.paused .eq i { animation-play-state: paused; }
+.track { min-width: 0; display: grid; gap: 2px; }
+.track strong { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.track .who { font-size: var(--step--1); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar { height: 3px; background: var(--line); border-radius: 2px; margin-top: 6px; overflow: hidden; }
+.bar b { display: block; height: 100%; width: 0; background: var(--candy); transition: width .5s linear; }
+.time { font-family: var(--mono); font-size: 0.6875rem; color: var(--muted); font-variant-numeric: tabular-nums; display: flex; justify-content: space-between; }
+.controls { display: flex; gap: 2px; }
+.icon-btn {
+  width: 38px; height: 38px; border-radius: 50%; border: 0; background: transparent; cursor: pointer;
+  display: grid; place-items: center; transition: background .2s, transform .15s;
+}
+.icon-btn:hover { background: var(--candy-soft); }
+.icon-btn:active { transform: scale(.92); }
+.icon-btn svg { width: 18px; height: 18px; fill: currentColor; }
+.icon-btn.main { background: var(--ink); color: var(--paper); }
+.icon-btn.main:hover { background: var(--candy); color: var(--on-tile); }
+.dash-screen { position: relative; aspect-ratio: 16 / 9; background: var(--screen); border-radius: 10px; overflow: hidden; }
+.dash-screen iframe, .dash-screen > div { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.offline {
+  position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px;
+  color: #F4E8EB; font-size: .875rem; gap: 6px; align-content: center;
+}
+.offline a { color: #F7B9D3; }
+.queue { list-style: none; margin: 0; padding: 0; display: grid; max-height: 228px; overflow-y: auto; }
+.queue button {
+  width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 7px 8px; border-radius: 8px;
+  display: grid; grid-template-columns: 1.6rem 1fr; gap: 8px; align-items: baseline; transition: background .2s;
+}
+.queue button:hover { background: var(--candy-soft); }
+.queue .qn { font-family: var(--mono); font-size: .6875rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.queue .qt { font-size: .875rem; }
+.queue .qt small { color: var(--muted); }
+.queue button[aria-current="true"] .qt { color: var(--candy); font-weight: 600; }
+
+/* sections */
+section.block { padding-block: 56px; border-top: 1px solid var(--line); display: grid; gap: 28px; position: relative; }
+.head { display: grid; gap: 6px; }
+.head h2 { font-size: var(--step-2); }
+.head p { color: var(--muted); max-width: 60ch; }
+.seen { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+.sub { display: grid; gap: 14px; }
+
+/* watching */
+.watch-top { display: grid; gap: 20px; }
+@media (min-width: 820px) { .watch-top { grid-template-columns: 1fr 1.4fr; align-items: stretch; } }
+.film {
+  position: relative; background: var(--ink); color: var(--paper); border-radius: var(--radius);
+  padding: 34px 24px; display: grid; gap: 14px; align-content: center;
+  --perf: radial-gradient(circle, var(--paper) 3px, transparent 3.5px);
+}
+.film::before, .film::after {
+  content: ""; position: absolute; left: 10px; right: 10px; height: 10px;
+  background: var(--perf) 0 0 / 16px 10px repeat-x;
+}
+.film::before { top: 8px; } .film::after { bottom: 8px; }
+.film h3 { font-size: var(--step-1); }
+.film p { opacity: .8; font-size: .9375rem; }
+.film .dots { display: flex; gap: 6px; }
+.film .dots i { width: 12px; height: 12px; border-radius: 50%; }
+.film .dots i:nth-child(1) { background: #F2994A; }
+.film .dots i:nth-child(2) { background: #6FCF97; }
+.film .dots i:nth-child(3) { background: #56CCF2; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; justify-self: start;
+  padding: 10px 16px; border-radius: 999px; text-decoration: none; font-weight: 500; font-size: .9375rem;
+  background: var(--rose); color: var(--on-tile); border: 0; cursor: pointer; transition: transform .2s, background .2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn .arr { transition: transform .2s; }
+.btn:hover .arr { transform: translateX(3px); }
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.btn.ghost:hover { background: var(--candy-soft); }
+.btn.candy { background: var(--candy); }
+
+.cinema { background: #120D10; border-radius: var(--radius); padding: 18px 18px 14px; display: grid; gap: 12px; position: relative; overflow: hidden; }
+.cinema::before, .cinema::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 18px;
+  background: repeating-linear-gradient(90deg, #7A1E2C 0 6px, #5E1522 6px 12px);
+}
+.cinema::before { left: 0; } .cinema::after { right: 0; }
+.cinema .screen { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: 4px; overflow: hidden; margin-inline: 8px; box-shadow: 0 0 40px rgb(255 240 220 / .12); }
+.cinema .screen iframe, .cinema .screen > div { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.cinema .marquee { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-inline: 8px; flex-wrap: wrap; color: #F4E8EB; }
+.cinema .marquee .label { color: #CDB7BF; }
+.cinema .marquee b { font-family: var(--display); font-weight: 400; font-size: 1.0625rem; }
+.cinema .btn { background: #F4E8EB; color: #120D10; padding: 8px 14px; }
+
+.posters {
+  display: grid; grid-auto-flow: column; grid-auto-columns: 150px; gap: 18px;
+  overflow-x: auto; padding: 14px 4px 18px; scroll-snap-type: x mandatory; perspective: 800px;
+}
+.poster {
+  scroll-snap-align: start; aspect-ratio: 2 / 3; border-radius: 8px; position: relative; overflow: hidden;
+  padding: 14px 12px; display: grid; align-content: space-between; color: var(--fg); background: var(--bg);
+  box-shadow: 0 6px 18px rgb(0 0 0 / .12); transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px));
+}
+.poster:hover { --lift: -8px; box-shadow: 0 16px 30px rgb(0 0 0 / .2); }
+.poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.poster .yr { font-family: var(--mono); font-size: .6875rem; letter-spacing: .08em; opacity: .8; }
+.poster h3 { font-size: 1.125rem; }
+.poster .dir { font-size: .75rem; opacity: .8; }
+.poster .ribbon {
+  position: absolute; top: 10px; right: -30px; transform: rotate(35deg); background: var(--candy); color: var(--on-tile);
+  font-family: var(--mono); font-size: .625rem; letter-spacing: .1em; padding: 3px 34px; z-index: 1;
+}
+
+.lower { display: grid; gap: 20px; }
+@media (min-width: 820px) { .lower { grid-template-columns: 1.3fr 1fr 1fr; } }
+.quote {
+  background: var(--rose-soft); border: 0; border-radius: var(--radius); padding: 22px; text-align: left; cursor: pointer;
+  display: grid; gap: 12px; align-content: space-between; min-height: 190px; transition: transform .25s;
+}
+.quote:hover { transform: rotate(-.8deg); }
+.quote:active { transform: scale(.98); }
+.quote blockquote { margin: 0; font-family: var(--display); font-size: 1.25rem; line-height: 1.35; transition: opacity .25s; }
+.quote.swap blockquote { opacity: 0; }
+.quote .src { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.list { display: grid; gap: 10px; align-content: start; }
+.list ul { list-style: none; margin: 0; padding: 0; display: grid; }
+.list li {
+  display: flex; justify-content: space-between; gap: 12px; align-items: center;
+  padding: 10px 2px; border-bottom: 1px dashed var(--line); transition: padding .25s, color .25s;
+}
+.list li:hover { padding-left: 8px; color: var(--rose); }
+.list li small { color: var(--muted); font-size: var(--step--1); white-space: nowrap; }
+.anya { position: relative; background: none; border: 0; padding: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; color: var(--candy); font-size: var(--step--1); }
+.anya svg { width: 30px; height: 30px; transition: transform .2s; }
+.anya:hover svg { transform: rotate(-8deg) scale(1.08); }
+.anya .bubble { right: 0; bottom: 120%; }
+
+/* listening */
+.artists { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 22px; }
+.artist { margin: 0; }
+.artist:nth-child(odd) { transform: rotate(-2deg); }
+.artist:nth-child(even) { transform: rotate(1.6deg); }
+.artist:hover { transform: rotate(0) translateY(-6px); }
+.artist .slot { background: var(--g); }
+.artist .initials { font-family: var(--display); font-size: 2rem; color: var(--on-tile); }
+.artist figcaption small { display: block; font-family: var(--body); font-size: .75rem; color: var(--muted); }
+.also { color: var(--muted); }
+.also strong { color: var(--ink); font-weight: 500; }
+
+/* sweets */
+#sweets { background: linear-gradient(var(--candy-soft), transparent 70%); border-top-color: transparent; }
+.sweet-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
+.sweet {
+  background: var(--surface); border-radius: var(--radius); padding: 18px; display: grid; gap: 10px; justify-items: start;
+  border: 1px solid var(--line); transition: transform .3s, border-color .3s;
+}
+.sweet:hover { transform: translateY(-4px) rotate(-1deg); border-color: var(--candy); }
+.sweet .ico { font-size: 1.9rem; width: 54px; height: 54px; border-radius: 50%; background: var(--candy-soft); display: grid; place-items: center; transition: transform .4s; }
+.sweet:hover .ico { transform: rotate(-12deg) scale(1.08); }
+.sweet b { font-weight: 600; }
+.sweet small { color: var(--muted); font-size: var(--step--1); }
+.choco { color: var(--muted); }
+.choco strong { color: var(--candy); font-weight: 600; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+.gallery .slot { aspect-ratio: 4 / 3; border-radius: var(--radius); border: 2px dashed color-mix(in srgb, var(--candy) 40%, transparent); }
+.gallery .slot:has(img) { border: 0; }
+.gallery figure { margin: 0; display: grid; gap: 6px; }
+.gallery figcaption { font-size: var(--step--1); color: var(--muted); }
+.floaty { position: absolute; pointer-events: none; font-size: 1.6rem; transform: translate(var(--dx, 0px), var(--dy, 0px)); transition: transform .5s ease; z-index: 0; }
+.floaty span { display: inline-block; animation: drift 6s ease-in-out infinite; opacity: .85; }
+.floaty:nth-of-type(2) span { animation-delay: -2s; animation-duration: 7s; }
+.floaty:nth-of-type(3) span { animation-delay: -4s; animation-duration: 8s; }
+@keyframes drift { 50% { transform: translateY(-10px) rotate(8deg); } }
+#sweets > *:not(.floaty) { position: relative; z-index: 1; }
+
+/* bts */
+.bts { display: grid; gap: 22px; }
+@media (min-width: 820px) { .bts { grid-template-columns: 1fr 1fr; align-items: start; } }
+.bias { background: var(--lilac-soft); border-radius: var(--radius); padding: 24px; display: grid; gap: 14px; }
+.bias h3 { font-size: var(--step-2); color: var(--lilac); }
+.bias dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; }
+.bias dt { font-family: var(--mono); font-size: var(--step--1); color: var(--muted); letter-spacing: .06em; }
+.bias dd { margin: 0; }
+.insta { display: grid; justify-items: center; min-width: 0; }
+.insta .instagram-media { margin: 0 !important; min-width: 0 !important; width: 100% !important; max-width: 480px; background: var(--surface) !important; border: 1px solid var(--line) !important; border-radius: var(--radius) !important; }
+.insta-fallback { display: grid; gap: 10px; padding: 24px; text-align: center; justify-items: center; color: var(--muted); }
+
+.pass {
+  display: grid; background: var(--lilac-soft); border-radius: var(--radius); overflow: hidden;
+  max-width: 760px; transition: transform .3s;
+}
+.pass:hover { transform: rotate(-.6deg) translateY(-2px); }
+@media (min-width: 640px) { .pass { grid-template-columns: 1fr 190px; } }
+.pass .main { padding: 26px 28px; display: grid; gap: 20px; }
+.airline { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.route { display: flex; align-items: center; gap: 16px; }
+.route .code { font-family: var(--display); font-size: clamp(1.8rem, 6vw, 2.6rem); line-height: 1; color: var(--lilac); }
+.route .city { font-size: var(--step--1); color: var(--muted); }
+.route .plane { flex: 1; height: 1px; border-top: 2px dashed color-mix(in srgb, var(--lilac) 50%, transparent); position: relative; min-width: 40px; }
+.route .plane svg { position: absolute; left: 30%; top: -12px; width: 22px; height: 22px; fill: var(--lilac); transform: translateX(-50%) rotate(90deg); transition: left .8s ease; }
+.pass:hover .route .plane svg { left: 75%; }
+.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 14px; }
+.fields div { display: grid; gap: 2px; }
+.fields b { font-weight: 500; }
+.stub {
+  padding: 26px 22px; display: grid; gap: 10px; align-content: center; justify-items: center; text-align: center;
+  border-top: 2px dashed color-mix(in srgb, var(--lilac) 45%, transparent);
+}
+@media (min-width: 640px) { .stub { border-top: 0; border-left: 2px dashed color-mix(in srgb, var(--lilac) 45%, transparent); } }
+.stamp {
+  font-family: var(--mono); font-size: var(--step--1); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--lilac); border: 2px solid var(--lilac); border-radius: 8px; padding: 6px 12px; transform: rotate(-6deg);
+}
+.borahae { font-family: var(--display); font-size: var(--step-1); color: var(--lilac); }
+.secret { background: none; border: 0; cursor: pointer; padding: 2px; opacity: .22; transition: opacity .3s, transform .3s; color: var(--lilac); font-size: .875rem; line-height: 1; }
+.secret:hover { opacity: 1; transform: scale(1.3); }
+
+/* thoughts */
+.thoughts { display: grid; gap: 14px; max-width: 680px; }
+.thought { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; display: grid; gap: 8px; animation: rise .5s ease both; }
+.thought time { font-family: var(--mono); font-size: .75rem; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; }
+.thought time b { color: var(--candy); font-weight: 500; }
+.thought .body { display: grid; gap: 8px; white-space: pre-line; max-width: 65ch; }
+.thought.new { border-color: var(--candy); }
+.live { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+.live i { width: 8px; height: 8px; border-radius: 50%; background: var(--hit); animation: twinkle 2s ease-in-out infinite; }
+.empty-note { color: var(--muted); }
+
+/* games */
+.games { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: grid; gap: 20px; max-width: 760px; }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.tab {
+  border: 1px solid var(--line); background: transparent; padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  font-size: .9375rem; transition: background .2s, color .2s, border-color .2s;
+}
+.tab:hover { background: var(--candy-soft); }
+.tab[aria-selected="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.panel { display: grid; gap: 16px; justify-items: center; }
+.panel .how { color: var(--muted); font-size: .9375rem; text-align: center; max-width: 48ch; }
+.msg { min-height: 1.6em; font-weight: 500; text-align: center; }
+.grid { display: grid; gap: 6px; }
+.row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.row.shake { animation: shake .35s; }
+@keyframes shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+.cell {
+  width: clamp(44px, 12vw, 54px); aspect-ratio: 1; border: 2px solid var(--line); border-radius: 8px;
+  display: grid; place-items: center; font-family: var(--mono); font-weight: 500; font-size: 1.35rem; text-transform: uppercase;
+  transition: border-color .15s, transform .15s;
+}
+.cell.filled { border-color: var(--muted); transform: scale(1.04); }
+.cell.hit, .cell.near, .cell.miss { color: var(--on-tile); border-color: transparent; animation: flip .45s ease both; }
+.cell.hit { background: var(--hit); } .cell.near { background: var(--near); } .cell.miss { background: var(--miss); }
+@keyframes flip { 0% { transform: rotateX(0); } 50% { transform: rotateX(90deg); } 100% { transform: rotateX(0); } }
+.keys { display: grid; gap: 6px; width: 100%; max-width: 480px; }
+.keys .krow { display: flex; gap: 5px; justify-content: center; }
+.key {
+  flex: 1; max-width: 40px; height: 48px; border: 0; border-radius: 6px; cursor: pointer;
+  background: var(--line); font-family: var(--mono); font-size: .875rem; font-weight: 500; transition: transform .1s, background .2s;
+}
+.key.wide { max-width: 62px; flex: 1.5; font-size: .75rem; }
+.key:active { transform: scale(.93); }
+.key.hit { background: var(--hit); color: var(--on-tile); }
+.key.near { background: var(--near); color: var(--on-tile); }
+.key.miss { background: var(--miss); color: var(--on-tile); }
+
+.cform { display: flex; gap: 8px; width: 100%; max-width: 440px; flex-wrap: wrap; }
+.cform input {
+  flex: 1; min-width: 0; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--paper); color: var(--ink); font: inherit;
+}
+.cform input:focus { outline: 2px solid var(--rose); outline-offset: 1px; }
+.clog { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; width: 100%; max-width: 440px; }
+.clog li {
+  display: grid; grid-template-columns: 1fr auto 28px; gap: 12px; align-items: center;
+  padding: 10px 14px; border-radius: 10px; background: var(--paper); border: 1px solid var(--line);
+  position: relative; overflow: hidden; animation: rise .4s ease both;
+}
+.clog li .heat { position: absolute; left: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, var(--lilac), var(--rose)); }
+.clog .km { font-family: var(--mono); font-size: var(--step--1); color: var(--muted); font-variant-numeric: tabular-nums; }
+.clog .dir { display: inline-block; text-align: center; font-size: 1.1rem; color: var(--rose); }
+.clog li.win { border-color: var(--hit); }
+.tries, .score { font-family: var(--mono); font-size: var(--step--1); color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.emoji-q { font-size: clamp(2.2rem, 9vw, 3rem); letter-spacing: .1em; text-align: center; min-height: 1.4em; }
+.opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: 460px; }
+.opt {
+  padding: 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--paper); cursor: pointer;
+  font-size: .9375rem; transition: background .2s, transform .15s, border-color .2s;
+}
+.opt:hover:not(:disabled) { background: var(--candy-soft); transform: translateY(-2px); }
+.opt:disabled { cursor: default; }
+.opt.right { background: var(--hit); color: var(--on-tile); border-color: transparent; }
+.opt.wrong { background: var(--miss); color: var(--on-tile); border-color: transparent; }
+
+.catch-wrap { position: relative; width: 100%; max-width: 560px; }
+#catch { width: 100%; height: 320px; display: block; border-radius: 12px; background: linear-gradient(var(--candy-soft), var(--paper)); touch-action: none; cursor: none; }
+.catch-over { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 12px; text-align: center; padding: 16px; background: color-mix(in srgb, var(--paper) 70%, transparent); border-radius: 12px; }
+.catch-over p { font-weight: 500; }
+
+/* cursor trail + toast */
+.spark { position: fixed; pointer-events: none; z-index: 50; font-size: 12px; line-height: 1; animation: spark .9s ease-out forwards; }
+@keyframes spark { to { opacity: 0; transform: translate(var(--tx), 26px) scale(.4) rotate(var(--rot)); } }
+.toast {
+  position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+  background: var(--lilac); color: var(--on-tile); padding: 10px 18px; border-radius: 999px; font-weight: 500; z-index: 60;
+  box-shadow: 0 8px 24px rgb(0 0 0 / .2); animation: pop 3.2s ease forwards; max-width: calc(100% - 32px); text-align: center;
+}
+.heart-rain { position: fixed; top: -30px; pointer-events: none; z-index: 55; font-size: 22px; animation: fall linear forwards; }
+@keyframes fall { to { transform: translateY(110vh) rotate(40deg); } }
+
+footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var(--muted); font-size: var(--step--1); display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top" id="top">
+    <a class="mark" href="#top">khushi<span>.</span></a>
+    <nav aria-label="Sections">
+      <a href="#watching">watching</a>
+      <a href="#listening">listening</a>
+      <a href="#sweets">sweets</a>
+      <a href="#bts">bts</a>
+      <a href="#places">places</a>
+      <a href="#thoughts">thoughts</a>
+      <a href="#play">play</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hello load">
+        <span class="label">hi, welcome in</span>
+        <h1>I'm Khushi. I like <em>slow drives</em>, good R&amp;B and logging every movie I watch.</h1>
+        <p>This is my little corner of the internet. Press play, let the car drive, and stay for a round of something before you go.</p>
+        <div class="chips">
+          <span class="chip">movies</span><span class="chip">R&amp;B</span><span class="chip">k-dramas</span><span class="chip">anime</span><span class="chip">BTS</span><span class="chip">anything chocolate</span>
+        </div>
+        <figure class="polaroid me">
+          <div class="slot" data-src="images/me/me.jpg"></div>
+          <figcaption>me!</figcaption>
+        </figure>
+      </div>
+
+      <div class="drive load">
+        <div class="scene paused" id="scene" role="img" aria-label="Khushi driving a little car past hills. The car drives while music plays.">
+          <div class="stars" aria-hidden="true">
+            <i style="left:8%;top:12%"></i><i style="left:22%;top:26%;animation-delay:.6s"></i><i style="left:36%;top:9%;animation-delay:1.2s"></i>
+            <i style="left:52%;top:20%;animation-delay:.3s"></i><i style="left:64%;top:7%;animation-delay:1.8s"></i><i style="left:92%;top:30%;animation-delay:.9s"></i>
+          </div>
+          <div class="orb" aria-hidden="true"></div>
+          <div class="layer far" aria-hidden="true">
+            <svg viewBox="0 0 800 100" preserveAspectRatio="none"><path fill="var(--hill-far)" d="M0 100V62Q90 22 190 50T400 44T610 40T800 62V100Z"/><rect fill="var(--hill-far)" x="560" y="6" width="5" height="40"/><ellipse fill="var(--hill-far)" cx="562.5" cy="14" rx="9" ry="5"/></svg>
+            <svg viewBox="0 0 800 100" preserveAspectRatio="none"><path fill="var(--hill-far)" d="M0 100V62Q90 22 190 50T400 44T610 40T800 62V100Z"/><rect fill="var(--hill-far)" x="560" y="6" width="5" height="40"/><ellipse fill="var(--hill-far)" cx="562.5" cy="14" rx="9" ry="5"/></svg>
+          </div>
+          <div class="layer near" aria-hidden="true">
+            <svg viewBox="0 0 800 100" preserveAspectRatio="none"><path fill="var(--hill-near)" d="M0 100V58Q120 18 260 52T520 46T800 58V100Z"/></svg>
+            <svg viewBox="0 0 800 100" preserveAspectRatio="none"><path fill="var(--hill-near)" d="M0 100V58Q120 18 260 52T520 46T800 58V100Z"/></svg>
+          </div>
+          <div class="road" aria-hidden="true"></div>
+          <div class="notes" aria-hidden="true"><span>♪</span><span>♫</span><span>♪</span></div>
+          <div class="car" id="car" aria-hidden="true">
+            <svg viewBox="0 0 160 80">
+              <path fill="var(--rose)" d="M40 37Q50 12 78 12H100Q118 12 130 37Z"/>
+              <rect fill="var(--rose)" x="8" y="35" width="144" height="28" rx="12"/>
+              <path fill="var(--glass)" d="M51 35Q58 18 78 18H88V35Z"/>
+              <path fill="var(--glass)" d="M94 18H100Q113 18 121 35H94Z"/>
+              <rect fill="var(--hair)" x="100" y="29" width="13" height="7" rx="3"/>
+              <circle fill="var(--skin)" cx="107" cy="26" r="5.5"/>
+              <path fill="var(--hair)" d="M101.3 25.5Q101 19.5 107 19.5Q112.6 19.6 112.6 24Q108 22.5 104 25Z"/>
+              <circle fill="var(--hair)" cx="101.5" cy="20" r="3.2"/>
+              <circle fill="#FFE7A8" cx="148" cy="44" r="3.5"/>
+              <rect fill="#F7C9A8" x="8" y="42" width="4" height="7" rx="2"/>
+              <g class="wheel"><circle fill="var(--hair)" cx="44" cy="63" r="11"/><circle fill="var(--line)" cx="44" cy="63" r="5"/><rect fill="var(--hair)" x="43" y="58" width="2" height="10"/></g>
+              <g class="wheel"><circle fill="var(--hair)" cx="118" cy="63" r="11"/><circle fill="var(--line)" cx="118" cy="63" r="5"/><rect fill="var(--hair)" x="117" y="58" width="2" height="10"/></g>
+            </svg>
+          </div>
+          <span class="parked" id="parked">parked · press play to drive</span>
+        </div>
+
+        <div class="player paused" id="player">
+          <div class="now">
+            <div class="cover" aria-hidden="true"><div class="eq"><i></i><i></i><i></i><i></i></div></div>
+            <div class="track">
+              <span class="label" id="t-state">up next</span>
+              <strong id="t-title">Blinding Lights</strong>
+              <span class="who" id="t-artist">The Weeknd</span>
+              <div class="bar"><b id="t-bar"></b></div>
+              <div class="time"><span id="t-pos">0:00</span><span id="t-len">--:--</span></div>
+            </div>
+            <div class="controls">
+              <button class="icon-btn" id="prev" aria-label="Previous song"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg></button>
+              <button class="icon-btn main" id="play" aria-label="Play"><svg viewBox="0 0 24 24" id="play-icon"><path d="M7 4v16l13-8z"/></svg></button>
+              <button class="icon-btn" id="next" aria-label="Next song"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+            </div>
+          </div>
+          <div class="dash-screen">
+            <div id="yt-music"></div>
+            <div class="offline" id="music-offline" hidden>
+              <span>The music player loads once the site is online.</span>
+              <a id="music-link" href="https://www.youtube.com/watch?v=4NRXx6U8ABQ" target="_blank" rel="noopener">Listen on YouTube ↗</a>
+            </div>
+          </div>
+          <ol class="queue" id="queue" aria-label="Playlist"></ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="watching">
+      <div class="head">
+        <span class="label">watching</span>
+        <h2>Films, shows and a lot of comfort rewatches</h2>
+      </div>
+
+      <div class="watch-top">
+        <div class="film">
+          <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+          <h3>Every movie I watch goes in my diary.</h3>
+          <p>Ratings, rewatches and the occasional very emotional review. Follow along if you want recommendations.</p>
+          <a class="btn" href="https://letterboxd.com/khukhu/" target="_blank" rel="noopener">See me on Letterboxd <span class="arr">→</span></a>
+        </div>
+        <div class="cinema">
+          <div class="screen">
+            <div id="yt-trailer"></div>
+            <div class="offline" id="trailer-offline" hidden>
+              <span>The trailer plays once the site is online.</span>
+              <a href="https://www.youtube.com/watch?v=uRu3zLOJN2c" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+            </div>
+          </div>
+          <div class="marquee">
+            <div><span class="label">now showing · my favorite film</span><br><b>The Banshees of Inisherin</b></div>
+            <button class="btn" id="trailer-btn" type="button">▶ Play trailer</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <span class="label">favorite films</span>
+        <div class="posters" id="posters"></div>
+      </div>
+
+      <div class="lower">
+        <button class="quote" id="quote" type="button" aria-label="Show another movie quote">
+          <blockquote id="q-text"></blockquote>
+          <span class="src"><span class="label" id="q-film"></span><span class="label">tap for another</span></span>
+        </button>
+        <div class="list">
+          <span class="label">on my tv</span>
+          <ul>
+            <li>Breaking Bad <small>crime</small></li>
+            <li>The Wire <small>crime</small></li>
+            <li>Gilmore Girls <small>comfort show</small></li>
+            <li>Nevertheless <small>k-drama</small></li>
+            <li>Summer Strike <small>k-drama</small></li>
+          </ul>
+        </div>
+        <div class="list">
+          <span class="label">anime</span>
+          <ul>
+            <li>Spy x Family
+              <button class="anya" id="anya" type="button" aria-label="Poke Anya">
+                <span id="anya-text">Anya forever</span>
+                <svg viewBox="0 0 40 40" aria-hidden="true">
+                  <path fill="#F4A6C1" d="M6 22Q6 6 20 6T34 22V30H6Z"/>
+                  <path fill="#2B1D22" d="M8 10l-3-7 7 4zM32 10l3-7-7 4z"/>
+                  <circle fill="#FBE1D3" cx="20" cy="24" r="10"/>
+                  <path fill="#F4A6C1" d="M10 20Q20 10 30 20Q26 15 20 16Q14 15 10 20Z"/>
+                  <g id="anya-eyes"><circle fill="#2E7D5B" cx="16" cy="24" r="1.8"/><circle fill="#2E7D5B" cx="24" cy="24" r="1.8"/></g>
+                  <path id="anya-mouth" fill="none" stroke="#B5546A" stroke-width="1.4" stroke-linecap="round" d="M18 29Q20 30.5 22 29"/>
+                </svg>
+              </button>
+            </li>
+            <li>The Apothecary Diaries <small>mystery</small></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="listening">
+      <div class="head">
+        <span class="label">listening</span>
+        <h2>Artists I keep coming back to</h2>
+      </div>
+      <div class="artists" id="artists"></div>
+      <p class="also">Mostly R&amp;B, some Bollywood, and BTS always. Every song in the player up top is from this list.</p>
+    </section>
+
+    <section class="block" id="sweets">
+      <span class="floaty" style="top:30px;right:8%"><span>🍫</span></span>
+      <span class="floaty" style="top:120px;right:22%"><span>🍰</span></span>
+      <span class="floaty" style="top:70px;right:38%"><span>🥭</span></span>
+      <span class="floaty" style="bottom:60px;right:4%"><span>🍨</span></span>
+      <div class="head">
+        <span class="label">sweets</span>
+        <h2>My favorite sweets</h2>
+        <p class="choco">The rule is simple: if it's <strong>chocolate flavored</strong>, I love it.</p>
+      </div>
+      <div class="sweet-list">
+        <div class="sweet"><span class="ico" aria-hidden="true">🎂</span><b>Chocolate cake</b><small>the classic</small></div>
+        <div class="sweet"><span class="ico" aria-hidden="true">🍨</span><b>DBC ice cream</b><small>Death by Chocolate</small></div>
+        <div class="sweet"><span class="ico" aria-hidden="true">🥭</span><b>Mango pastry</b><small>the one non-chocolate pick</small></div>
+        <div class="sweet"><span class="ico" aria-hidden="true">🍰</span><b>Chocolate cheesecake</b><small>rich and creamy</small></div>
+        <div class="sweet"><span class="ico" aria-hidden="true">🥤</span><b>Sea salt caramel milkshake</b><small>a big favorite</small></div>
+      </div>
+      <div class="gallery">
+        <figure><div class="slot" data-src="images/food/1.jpg"></div><figcaption>food photo 1</figcaption></figure>
+        <figure><div class="slot" data-src="images/food/2.jpg"></div><figcaption>food photo 2</figcaption></figure>
+        <figure><div class="slot" data-src="images/food/3.jpg"></div><figcaption>food photo 3</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="block" id="bts">
+      <div class="head">
+        <span class="label">bts</span>
+        <h2>My favorite band, and my bias</h2>
+      </div>
+      <div class="bts">
+        <div class="bias">
+          <span class="label">my bias</span>
+          <h3>Kim Taehyung, V</h3>
+          <dl>
+            <dt>birthday</dt><dd>30 December 1995</dd>
+            <dt>instagram</dt><dd><a href="https://www.instagram.com/thv/" target="_blank" rel="noopener">@thv</a></dd>
+            <dt>fun fact</dt><dd>He came up with <span lang="ko">보라해</span>, "I purple you", the phrase ARMY now uses for love.</dd>
+          </dl>
+        </div>
+        <div class="insta">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Ddd0_ZoG4Lk/" data-instgrm-version="14">
+            <div class="insta-fallback">
+              <span>A favorite post from V's Instagram</span>
+              <a class="btn ghost" href="https://www.instagram.com/p/Ddd0_ZoG4Lk/" target="_blank" rel="noopener">View on Instagram ↗</a>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="sub">
+        <span class="label">someday</span>
+        <p class="also">My dream is to fly to Korea and see BTS live in concert.</p>
+        <div class="pass">
+          <div class="main">
+            <div class="airline"><span class="label">boarding pass</span><span class="label">gate: wherever BTS is</span></div>
+            <div class="route">
+              <div><div class="code">HOME</div><div class="city">wherever I am</div></div>
+              <div class="plane" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div>
+              <div><div class="code">SEOUL</div><div class="city">ICN, Incheon</div></div>
+            </div>
+            <div class="fields">
+              <div><span class="label">passenger</span><b>Khushi</b></div>
+              <div><span class="label">purpose</span><b>See BTS live</b></div>
+              <div><span class="label">seat</span><b>Any seat I can get</b></div>
+              <div><span class="label">departs</span><b>Someday</b></div>
+            </div>
+          </div>
+          <div class="stub">
+            <span class="stamp">bucket list</span>
+            <span class="borahae" lang="ko">보라해</span>
+            <span class="label">I purple you <button class="secret" id="secret" type="button" aria-label="A hidden purple heart">♥</button></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="places">
+      <div class="head">
+        <span class="label">places</span>
+        <h2>Places I've been</h2>
+      </div>
+      <div class="gallery">
+        <figure><div class="slot" data-src="images/travel/1.jpg"></div><figcaption>place 1</figcaption></figure>
+        <figure><div class="slot" data-src="images/travel/2.jpg"></div><figcaption>place 2</figcaption></figure>
+        <figure><div class="slot" data-src="images/travel/3.jpg"></div><figcaption>place 3</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="block" id="thoughts">
+      <div class="head">
+        <span class="label">thoughts</span>
+        <h2>Things on my mind</h2>
+        <p>Little notes I write whenever I feel like it. This page checks for new ones every minute.</p>
+        <span class="live"><i></i><span id="t-updated">checking for thoughts…</span></span>
+      </div>
+      <div class="thoughts" id="thought-list">
+        <p class="empty-note">Loading thoughts…</p>
+      </div>
+    </section>
+
+    <section class="block" id="play">
+      <div class="head">
+        <span class="label">play</span>
+        <h2>Stay for a round</h2>
+        <p>Four tiny games. Pick one.</p>
+      </div>
+      <div class="games">
+        <div class="tabs" role="tablist" aria-label="Games">
+          <button class="tab" role="tab" id="tab-word" data-game="word" aria-selected="true" aria-controls="panel-word">Five letters</button>
+          <button class="tab" role="tab" id="tab-emoji" data-game="emoji" aria-selected="false" aria-controls="panel-emoji">Emoji movies</button>
+          <button class="tab" role="tab" id="tab-catch" data-game="catch" aria-selected="false" aria-controls="panel-catch">Dessert catch</button>
+          <button class="tab" role="tab" id="tab-country" data-game="country" aria-selected="false" aria-controls="panel-country">Where to next?</button>
+        </div>
+
+        <div class="panel" id="panel-word" role="tabpanel" aria-labelledby="tab-word">
+          <p class="how">Guess the five-letter word in six tries. Every answer is something I love. Green is the right spot, yellow is in the word but somewhere else.</p>
+          <div class="grid" id="grid"></div>
+          <p class="msg" id="word-msg" aria-live="polite"></p>
+          <div class="keys" id="keys"></div>
+          <button class="btn ghost" id="word-new" type="button" hidden>New word</button>
+        </div>
+
+        <div class="panel" id="panel-emoji" role="tabpanel" aria-labelledby="tab-emoji" hidden>
+          <p class="how">Name the movie from the emojis. Eight rounds, and a lot of them are my favorites.</p>
+          <span class="score" id="e-score">round 1 of 8 · score 0</span>
+          <div class="emoji-q" id="e-q" aria-live="polite"></div>
+          <div class="opts" id="e-opts"></div>
+          <p class="msg" id="e-msg" aria-live="polite"></p>
+          <button class="btn ghost" id="e-next" type="button" hidden>Next</button>
+        </div>
+
+        <div class="panel" id="panel-catch" role="tabpanel" aria-labelledby="tab-catch" hidden>
+          <p class="how">Move the bowl to catch falling sweets. Each one is a point. Dodge the broccoli, it costs you two. You have 30 seconds.</p>
+          <span class="score" id="c-score">score 0 · 30s</span>
+          <div class="catch-wrap">
+            <canvas id="catch" aria-label="Dessert catching game"></canvas>
+            <div class="catch-over" id="catch-over">
+              <p id="catch-msg">Ready? Use your mouse, finger or arrow keys.</p>
+              <button class="btn candy" id="catch-start" type="button">Start</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" id="panel-country" role="tabpanel" aria-labelledby="tab-country" hidden>
+          <p class="how">I'm thinking of a country. Each guess shows how far away it is and which way to head. You get eight tries.</p>
+          <form class="cform" id="cform" autocomplete="off">
+            <input id="cguess" list="countries" placeholder="Type a country" aria-label="Your country guess">
+            <datalist id="countries"></datalist>
+            <button class="btn" type="submit">Guess</button>
+          </form>
+          <p class="msg" id="g-msg" aria-live="polite"></p>
+          <span class="tries" id="g-tries">8 tries left</span>
+          <ul class="clog" id="clog"></ul>
+          <button class="btn ghost" id="g-new" type="button" hidden>New country</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>made by Khushi, with a little help from Tom</span>
+    <a href="#top">back to top ↑</a>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+  /* ---------- photo slots ---------- */
+  const camera = '<svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="4"/><path d="M8 6l1.5-2h5L16 6"/></svg>';
+  function fillSlot(slot, fallbackHTML) {
+    const src = slot.dataset.src;
+    slot.innerHTML = fallbackHTML || `<div class="ph">${camera}<span class="label">your photo goes here</span><code>${src}</code></div>`;
+    const img = new Image();
+    img.alt = slot.dataset.alt || "";
+    img.onload = () => slot.appendChild(img);
+    img.src = src;
+  }
+  document.querySelectorAll(".slot[data-src]").forEach((s) => fillSlot(s));
+
+  /* ---------- playlist + car ---------- */
+  const SONGS = [
+    { id: "4NRXx6U8ABQ", title: "Blinding Lights", artist: "The Weeknd" },
+    { id: "pFptt7Cargc", title: "Let It Happen", artist: "Tame Impala" },
+    { id: "vBy7FaapGRo", title: "Best Part", artist: "Daniel Caesar ft. H.E.R." },
+    { id: "qeS6ZoFR0BY", title: "Dive", artist: "Olivia Dean" },
+    { id: "KNtJGQkC-WI", title: "we can't be friends", artist: "Ariana Grande" },
+    { id: "55HzptaZbfk", title: "Tum Se Hi", artist: "Mohit Chauhan · Pritam" },
+    { id: "6mr4cYJ7yew", title: "Kesariya", artist: "Pritam · Arijit Singh" },
+    { id: "uQFVqltOXRg", title: "Get You", artist: "Daniel Caesar ft. Kali Uchis" },
+    { id: "2SUwOgmvzK4", title: "The Less I Know The Better", artist: "Tame Impala" }
+  ];
+  let si = 0, driving = false, music = null, trailer = null, ytOk = false, fakeTime = 0;
+  const fmt = (s) => { s = Math.max(0, Math.floor(s || 0)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
+  const PAUSE_ICON = '<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>';
+  const PLAY_ICON = '<path d="M7 4v16l13-8z"/>';
+
+  const queue = $("#queue");
+  SONGS.forEach((s, i) => {
+    const li = document.createElement("li");
+    li.innerHTML = `<button type="button"><span class="qn">${String(i + 1).padStart(2, "0")}</span><span class="qt"></span></button>`;
+    li.querySelector(".qt").innerHTML = `${s.title} <small>· ${s.artist}</small>`;
+    li.querySelector("button").addEventListener("click", () => playSong(i));
+    queue.appendChild(li);
+  });
+
+  function showSong() {
+    const s = SONGS[si];
+    $("#t-title").textContent = s.title;
+    $("#t-artist").textContent = s.artist;
+    $("#music-link").href = "https://www.youtube.com/watch?v=" + s.id;
+    queue.querySelectorAll("button").forEach((b, i) => b.setAttribute("aria-current", String(i === si)));
+  }
+  function setDriving(on) {
+    driving = on;
+    $("#scene").classList.toggle("paused", !on);
+    $("#player").classList.toggle("paused", !on);
+    $("#parked").hidden = on;
+    $("#play-icon").innerHTML = on ? PAUSE_ICON : PLAY_ICON;
+    $("#play").setAttribute("aria-label", on ? "Pause" : "Play");
+    $("#t-state").textContent = on ? "now playing" : "paused";
+  }
+  function playSong(i) {
+    si = (i + SONGS.length) % SONGS.length;
+    fakeTime = 0;
+    showSong();
+    if (ytOk && music) music.loadVideoById(SONGS[si].id);
+    else setDriving(true);
+  }
+  $("#play").addEventListener("click", () => {
+    if (ytOk && music) {
+      const st = music.getPlayerState();
+      if (st === 1 || st === 3) music.pauseVideo(); else music.playVideo();
+    } else setDriving(!driving);
+  });
+  $("#next").addEventListener("click", () => playSong(si + 1));
+  $("#prev").addEventListener("click", () => playSong(si - 1));
+  showSong();
+
+  setInterval(() => {
+    let t = 0, d = 0;
+    if (ytOk && music && music.getCurrentTime) { t = music.getCurrentTime(); d = music.getDuration(); }
+    else if (driving) t = ++fakeTime;
+    $("#t-pos").textContent = fmt(t);
+    $("#t-len").textContent = d ? fmt(d) : "--:--";
+    $("#t-bar").style.width = d ? (t / d * 100) + "%" : "0%";
+  }, 1000);
+
+  /* YouTube players (they load once the site is online) */
+  window.onYouTubeIframeAPIReady = () => {
+    ytOk = true;
+    const vars = { playsinline: 1, rel: 0, modestbranding: 1 };
+    music = new YT.Player("yt-music", {
+      videoId: SONGS[0].id, playerVars: vars,
+      events: {
+        onStateChange: (e) => {
+          if (e.data === YT.PlayerState.PLAYING) { setDriving(true); if (trailer && trailer.pauseVideo) trailer.pauseVideo(); }
+          else if (e.data === YT.PlayerState.ENDED) playSong(si + 1);
+          else if (e.data === YT.PlayerState.PAUSED) setDriving(false);
+        }
+      }
+    });
+    trailer = new YT.Player("yt-trailer", {
+      videoId: "uRu3zLOJN2c", playerVars: vars,
+      events: {
+        onStateChange: (e) => {
+          const playing = e.data === YT.PlayerState.PLAYING;
+          $("#trailer-btn").textContent = playing ? "❚❚ Pause trailer" : "▶ Play trailer";
+          if (playing && music && music.pauseVideo) music.pauseVideo();
+        }
+      }
+    });
+  };
+  const yt = document.createElement("script");
+  yt.src = "https://www.youtube.com/iframe_api";
+  yt.onerror = goOffline;
+  document.head.appendChild(yt);
+  setTimeout(() => { if (!ytOk) goOffline(); }, 7000);
+  function goOffline() {
+    if (ytOk) return;
+    $("#music-offline").hidden = false;
+    $("#trailer-offline").hidden = false;
+  }
+  $("#trailer-btn").addEventListener("click", () => {
+    if (!ytOk || !trailer || !trailer.getPlayerState) { window.open("https://www.youtube.com/watch?v=uRu3zLOJN2c", "_blank", "noopener"); return; }
+    trailer.getPlayerState() === 1 ? trailer.pauseVideo() : trailer.playVideo();
+  });
+
+  function bubble(parent, text, style) {
+    const b = document.createElement("span");
+    b.className = "bubble";
+    b.textContent = text;
+    Object.assign(b.style, style || {});
+    parent.appendChild(b);
+    setTimeout(() => b.remove(), 1700);
+  }
+  $("#scene").addEventListener("click", () => bubble($("#scene"), driving ? "beep beep! 🚗" : "press play and I'll drive", { left: "30%", top: "18%" }));
+
+  /* ---------- favorite films ---------- */
+  const FILMS = [
+    { t: "The Banshees of Inisherin", y: 2022, d: "Martin McDonagh", bg: "#3F6E6A", fg: "#F6EFE3", fav: true, slug: "banshees-of-inisherin" },
+    { t: "Dog Day Afternoon", y: 1975, d: "Sidney Lumet", bg: "#D9A441", fg: "#2B1D16", slug: "dog-day-afternoon" },
+    { t: "Home Alone", y: 1990, d: "Chris Columbus", bg: "#B8322F", fg: "#FFF3E6", slug: "home-alone" },
+    { t: "Interstellar", y: 2014, d: "Christopher Nolan", bg: "#1E2433", fg: "#E9E4D8", slug: "interstellar" },
+    { t: "Dead Poets Society", y: 1989, d: "Peter Weir", bg: "#6B4A33", fg: "#F4E9DA", slug: "dead-poets-society" },
+    { t: "Nobody Knows", y: 2004, d: "Hirokazu Kore-eda", bg: "#CBD5C2", fg: "#2A2F28", slug: "nobody-knows" },
+    { t: "Chungking Express", y: 1994, d: "Wong Kar-wai", bg: "#1F6F5C", fg: "#F2D24B", slug: "chungking-express" },
+    { t: "Baby Driver", y: 2017, d: "Edgar Wright", bg: "#C2283F", fg: "#FFF1F1", slug: "baby-driver" },
+    { t: "The Pursuit of Happyness", y: 2006, d: "Gabriele Muccino", bg: "#E8C9A0", fg: "#3A2A1C", slug: "pursuit-of-happyness" }
+  ];
+  const posters = $("#posters");
+  FILMS.forEach((f) => {
+    const p = document.createElement("div");
+    p.className = "poster";
+    p.style.setProperty("--bg", f.bg);
+    p.style.setProperty("--fg", f.fg);
+    p.innerHTML = `${f.fav ? '<span class="ribbon">FAVORITE</span>' : ""}<span class="yr">${f.y}</span><div><h3></h3><span class="dir"></span></div>`;
+    p.querySelector("h3").textContent = f.t;
+    p.querySelector(".dir").textContent = "dir. " + f.d;
+    const img = new Image();
+    img.alt = f.t + " poster";
+    img.onload = () => p.appendChild(img);
+    img.src = `images/posters/${f.slug}.jpg`;
+    if (!reduced) {
+      p.addEventListener("pointermove", (e) => {
+        const r = p.getBoundingClientRect();
+        p.style.setProperty("--ry", ((e.clientX - r.left) / r.width - .5) * 14 + "deg");
+        p.style.setProperty("--rx", -((e.clientY - r.top) / r.height - .5) * 14 + "deg");
+      });
+      p.addEventListener("pointerleave", () => { p.style.setProperty("--rx", "0deg"); p.style.setProperty("--ry", "0deg"); });
+    }
+    posters.appendChild(p);
+  });
+
+  /* ---------- quotes ---------- */
+  const QUOTES = [
+    ["I just don't like you no more.", "The Banshees of Inisherin"],
+    ["Carpe diem. Seize the day, boys. Make your lives extraordinary.", "Dead Poets Society"],
+    ["Keep the change, ya filthy animal.", "Home Alone"],
+    ["Mankind was born on Earth. It was never meant to die here.", "Interstellar"],
+    ["Attica! Attica!", "Dog Day Afternoon"],
+    ["If memories could be canned, would they also have expiry dates?", "Chungking Express"],
+    ["Don't ever let somebody tell you you can't do something.", "The Pursuit of Happyness"],
+    ["The moment you catch feelings is the moment you catch a bullet.", "Baby Driver"]
+  ];
+  let qi = Math.floor(Math.random() * QUOTES.length);
+  function showQuote() { $("#q-text").textContent = "“" + QUOTES[qi][0] + "”"; $("#q-film").textContent = QUOTES[qi][1]; }
+  $("#quote").addEventListener("click", () => {
+    const q = $("#quote");
+    q.classList.add("swap");
+    setTimeout(() => { qi = (qi + 1) % QUOTES.length; showQuote(); q.classList.remove("swap"); }, 220);
+  });
+  showQuote();
+
+  /* ---------- Anya easter egg ---------- */
+  const ANYA = ["Waku waku!", "Anya likes peanuts.", "Heh.", "Anya is a good girl."];
+  let anyaN = 0;
+  $("#anya").addEventListener("click", () => {
+    const eyes = $("#anya-eyes"), mouth = $("#anya-mouth");
+    eyes.innerHTML = '<circle fill="#2E7D5B" cx="16" cy="24" r="2.8"/><circle fill="#2E7D5B" cx="24" cy="24" r="2.8"/>';
+    mouth.setAttribute("d", "M19 29.5a1 1.4 0 1 0 2 0a1 1.4 0 1 0-2 0");
+    bubble($("#anya"), ANYA[anyaN++ % ANYA.length]);
+    setTimeout(() => {
+      eyes.innerHTML = '<circle fill="#2E7D5B" cx="16" cy="24" r="1.8"/><circle fill="#2E7D5B" cx="24" cy="24" r="1.8"/>';
+      mouth.setAttribute("d", "M18 29Q20 30.5 22 29");
+    }, 1400);
+  });
+
+  /* ---------- artists ---------- */
+  const ARTISTS = [
+    ["Daniel Caesar", "R&B", "daniel-caesar", "#B5838D, #6D597A"],
+    ["Olivia Dean", "soul, pop", "olivia-dean", "#E5989B, #FFB4A2"],
+    ["Ariana Grande", "pop, R&B", "ariana-grande", "#CDB4DB, #FFAFCC"],
+    ["The Weeknd", "R&B, synth-pop", "the-weeknd", "#9D0208, #370617"],
+    ["Pritam", "Bollywood", "pritam", "#F4A261, #E76F51"],
+    ["Mohit Chauhan", "Bollywood", "mohit-chauhan", "#2A9D8F, #264653"],
+    ["Tame Impala", "psych-pop", "tame-impala", "#F28482, #84A59D"]
+  ];
+  const artists = $("#artists");
+  ARTISTS.forEach(([name, genre, slug, g]) => {
+    const fig = document.createElement("figure");
+    fig.className = "polaroid artist";
+    fig.innerHTML = `<div class="slot" data-src="images/artists/${slug}.jpg" style="--g: linear-gradient(135deg, ${g})"></div><figcaption></figcaption>`;
+    fig.querySelector("figcaption").innerHTML = `${name}<small>${genre}</small>`;
+    const slot = fig.querySelector(".slot");
+    slot.dataset.alt = name;
+    fillSlot(slot, `<span class="initials">${name.split(" ").map((w) => w[0]).join("").slice(0, 2)}</span>`);
+    artists.appendChild(fig);
+  });
+
+  /* ---------- section reveal ---------- */
+  if ("IntersectionObserver" in window && !reduced) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("seen"); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll("section.block").forEach((s) => { if (s.getBoundingClientRect().top > innerHeight) io.observe(s); });
+  }
+
+  /* ---------- cursor trail + things that shy away from it ---------- */
+  const fine = matchMedia("(pointer: fine)").matches;
+  if (fine && !reduced) {
+    const SPARKS = [["♥", "--candy"], ["✦", "--lilac"], ["•", "--rose"], ["♥", "--rose"]];
+    let last = 0, mx = -999, my = -999, ticking = false;
+    const shy = document.querySelectorAll(".chip, .floaty");
+    document.addEventListener("pointermove", (e) => {
+      mx = e.clientX; my = e.clientY;
+      const now = performance.now();
+      if (now - last > 45) {
+        last = now;
+        const [ch, color] = SPARKS[Math.floor(Math.random() * SPARKS.length)];
+        const s = document.createElement("span");
+        s.className = "spark";
+        s.textContent = ch;
+        s.style.cssText = `left:${mx}px;top:${my}px;color:var(${color});--tx:${(Math.random() - .5) * 30}px;--rot:${(Math.random() - .5) * 90}deg`;
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), 900);
+      }
+      if (!ticking) { ticking = true; requestAnimationFrame(nudge); }
+    });
+    function nudge() {
+      ticking = false;
+      shy.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -100 || r.top > innerHeight + 100) return;
+        const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        const dx = cx - mx, dy = cy - my, d = Math.hypot(dx, dy);
+        const push = d < 110 ? (110 - d) / 110 * 10 : 0;
+        el.style.setProperty("--dx", (d ? dx / d * push : 0) + "px");
+        el.style.setProperty("--dy", (d ? dy / d * push : 0) + "px");
+      });
+    }
+  }
+
+  /* ---------- hidden purple heart ---------- */
+  function toast(text) {
+    const t = document.createElement("div");
+    t.className = "toast";
+    t.textContent = text;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 3300);
+  }
+  function purpleRain() {
+    toast("You found it! 보라해, I purple you 💜");
+    if (reduced) return;
+    for (let i = 0; i < 28; i++) {
+      const h = document.createElement("span");
+      h.className = "heart-rain";
+      h.textContent = "💜";
+      h.style.left = Math.random() * 100 + "vw";
+      h.style.animationDuration = 2.2 + Math.random() * 2 + "s";
+      h.style.animationDelay = Math.random() * .8 + "s";
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 5200);
+    }
+  }
+  $("#secret").addEventListener("click", purpleRain);
+  let typed = "";
+  document.addEventListener("keydown", (e) => {
+    if (e.key.length !== 1) return;
+    typed = (typed + e.key.toLowerCase()).slice(-8);
+    if (typed.endsWith("borahae") || typed.endsWith("purple")) { typed = ""; purpleRain(); }
+  });
+
+  /* ---------- thoughts (read from thoughts.md) ---------- */
+  let seenThoughts = null;
+  function parseThoughts(md) {
+    md = md.replace(/<!--[\s\S]*?-->/g, "");
+    return md.split(/^## /m).slice(1).map((chunk) => {
+      const nl = chunk.indexOf("\n");
+      const head = (nl < 0 ? chunk : chunk.slice(0, nl)).trim();
+      const body = (nl < 0 ? "" : chunk.slice(nl + 1)).trim();
+      const m = head.match(/^(\d{4})-(\d{2})-(\d{2})\s+(\d{1,2}):(\d{2})\s*(Z|[+-]\d{2}:?\d{2})?/);
+      let date = null;
+      if (m) {
+        const off = m[6] ? (m[6] === "Z" ? "Z" : m[6].replace(/^([+-]\d{2})(\d{2})$/, "$1:$2")) : "";
+        date = new Date(`${m[1]}-${m[2]}-${m[3]}T${m[4].padStart(2, "0")}:${m[5]}:00${off}`);
+        if (isNaN(date)) date = null;
+      }
+      return { head, body, date };
+    }).filter((t) => t.body);
+  }
+  function ago(date) {
+    const s = (Date.now() - date) / 1000;
+    if (s < 60) return "just now";
+    if (s < 3600) return Math.floor(s / 60) + " min ago";
+    if (s < 86400) return Math.floor(s / 3600) + " h ago";
+    if (s < 86400 * 30) return Math.floor(s / 86400) + " d ago";
+    return "";
+  }
+  function renderThoughts(list) {
+    const box = $("#thought-list");
+    box.innerHTML = "";
+    if (!list.length) { box.innerHTML = '<p class="empty-note">No thoughts yet. Check back soon.</p>'; return; }
+    list.sort((a, b) => (b.date || 0) - (a.date || 0));
+    const fresh = seenThoughts ? list.filter((t) => !seenThoughts.has(t.head)) : [];
+    list.forEach((t) => {
+      const art = document.createElement("article");
+      art.className = "thought" + (fresh.includes(t) ? " new" : "");
+      const time = document.createElement("time");
+      if (t.date) {
+        time.dateTime = t.date.toISOString();
+        time.innerHTML = "<span></span><b></b>";
+        time.firstChild.textContent = t.date.toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
+        time.lastChild.textContent = ago(t.date);
+      } else time.textContent = t.head;
+      const body = document.createElement("div");
+      body.className = "body";
+      body.textContent = t.body;
+      art.append(time, body);
+      box.appendChild(art);
+    });
+    seenThoughts = new Set(list.map((t) => t.head));
+  }
+  async function loadThoughts() {
+    try {
+      const res = await fetch("thoughts.md?t=" + Date.now(), { cache: "no-store" });
+      if (!res.ok) throw new Error(res.status);
+      renderThoughts(parseThoughts(await res.text()));
+      $("#t-updated").textContent = "live · checked " + new Date().toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" });
+    } catch (err) {
+      if (!seenThoughts) $("#thought-list").innerHTML = '<p class="empty-note">Thoughts show up once the site is online.</p>';
+      $("#t-updated").textContent = "couldn't check right now";
+    }
+  }
+  loadThoughts();
+  setInterval(loadThoughts, 60000);
+
+  /* ---------- tabs ---------- */
+  let activeGame = "word";
+  document.querySelectorAll(".tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      activeGame = tab.dataset.game;
+      document.querySelectorAll(".tab").forEach((t) => {
+        t.setAttribute("aria-selected", String(t === tab));
+        $("#panel-" + t.dataset.game).hidden = t !== tab;
+      });
+      if (activeGame === "catch") sizeCanvas();
+      else stopCatch();
+    });
+  });
+
+  /* ---------- five letters ---------- */
+  const WORDS = ["SEOUL", "ANIME", "DRIVE", "MOVIE", "LIGHT", "MUSIC", "DREAM", "NIGHT", "SPIES", "RADIO", "HEART", "VINYL", "STARS", "PEACE", "CANDY", "TOKYO", "MANGO", "CREAM", "SWEET", "CAKES"];
+  const grid = $("#grid"), keysEl = $("#keys");
+  let target, guesses, cur, over;
+  const keyState = {};
+  const rank = { miss: 1, near: 2, hit: 3 };
+  for (let r = 0; r < 6; r++) {
+    const row = document.createElement("div");
+    row.className = "row";
+    for (let c = 0; c < 5; c++) { const cell = document.createElement("div"); cell.className = "cell"; row.appendChild(cell); }
+    grid.appendChild(row);
+  }
+  ["QWERTYUIOP", "ASDFGHJKL", "+ZXCVBNM-"].forEach((line) => {
+    const row = document.createElement("div");
+    row.className = "krow";
+    [...line].forEach((ch) => {
+      const b = document.createElement("button");
+      b.className = "key";
+      b.type = "button";
+      if (ch === "+") { b.textContent = "enter"; b.classList.add("wide"); b.dataset.k = "Enter"; }
+      else if (ch === "-") { b.textContent = "⌫"; b.classList.add("wide"); b.dataset.k = "Backspace"; b.setAttribute("aria-label", "Delete letter"); }
+      else { b.textContent = ch; b.dataset.k = ch; }
+      b.addEventListener("click", () => press(b.dataset.k));
+      row.appendChild(b);
+    });
+    keysEl.appendChild(row);
+  });
+  function newWord() {
+    let next;
+    do { next = WORDS[Math.floor(Math.random() * WORDS.length)]; } while (next === target);
+    target = next; guesses = []; cur = ""; over = false;
+    Object.keys(keyState).forEach((k) => delete keyState[k]);
+    grid.querySelectorAll(".cell").forEach((c) => { c.textContent = ""; c.className = "cell"; c.style.animationDelay = ""; });
+    keysEl.querySelectorAll(".key").forEach((k) => k.classList.remove("hit", "near", "miss"));
+    $("#word-msg").textContent = "";
+    $("#word-new").hidden = true;
+  }
+  function score(guess, answer) {
+    const res = Array(5).fill("miss"), left = {};
+    for (let i = 0; i < 5; i++) {
+      if (guess[i] === answer[i]) res[i] = "hit";
+      else left[answer[i]] = (left[answer[i]] || 0) + 1;
+    }
+    for (let i = 0; i < 5; i++) {
+      if (res[i] !== "hit" && left[guess[i]] > 0) { res[i] = "near"; left[guess[i]]--; }
+    }
+    return res;
+  }
+  function drawCurrent() {
+    const cells = grid.children[guesses.length].children;
+    for (let i = 0; i < 5; i++) { cells[i].textContent = cur[i] || ""; cells[i].classList.toggle("filled", !!cur[i]); }
+  }
+  function press(k) {
+    if (over) return;
+    if (k === "Backspace") { cur = cur.slice(0, -1); drawCurrent(); return; }
+    if (k === "Enter") { submitWord(); return; }
+    if (/^[A-Z]$/.test(k) && cur.length < 5) { cur += k; drawCurrent(); }
+  }
+  function submitWord() {
+    const row = grid.children[guesses.length];
+    if (cur.length < 5) {
+      $("#word-msg").textContent = "Five letters, please.";
+      row.classList.remove("shake"); void row.offsetWidth; row.classList.add("shake");
+      return;
+    }
+    const res = score(cur, target);
+    [...row.children].forEach((cell, i) => {
+      cell.classList.remove("filled");
+      cell.style.animationDelay = (i * 0.12) + "s";
+      cell.classList.add(res[i]);
+      const ch = cur[i];
+      if (!keyState[ch] || rank[res[i]] > rank[keyState[ch]]) keyState[ch] = res[i];
+    });
+    keysEl.querySelectorAll(".key").forEach((k) => {
+      const s = keyState[k.dataset.k];
+      if (s) { k.classList.remove("hit", "near", "miss"); k.classList.add(s); }
+    });
+    guesses.push(cur);
+    const won = cur === target;
+    cur = "";
+    if (won) { over = true; $("#word-msg").textContent = guesses.length === 1 ? "First try. Impressive!" : `Got it in ${guesses.length}!`; }
+    else if (guesses.length === 6) { over = true; $("#word-msg").textContent = `So close. It was ${target}.`; }
+    else $("#word-msg").textContent = "";
+    if (over) $("#word-new").hidden = false;
+  }
+  $("#word-new").addEventListener("click", newWord);
+  newWord();
+
+  /* ---------- emoji movies ---------- */
+  const EMOJI = [
+    ["🏠👦🎄🪤", "Home Alone"], ["🚀🌽⏳🕳️", "Interstellar"], ["📚🪑🫡✒️", "Dead Poets Society"],
+    ["🚗🎧💰🏃", "Baby Driver"], ["🏦☀️🚔📞", "Dog Day Afternoon"], ["🫏🏝️🎻🍺", "The Banshees of Inisherin"],
+    ["🍍🥫👮✈️", "Chungking Express"], ["👨‍👦💼🏃🏢", "The Pursuit of Happyness"], ["🚢🧊💔", "Titanic"],
+    ["🦁👑🌅", "The Lion King"], ["🐠🔍🌊", "Finding Nemo"], ["🐀👨‍🍳🍲", "Ratatouille"],
+    ["🦖🏝️🚙", "Jurassic Park"], ["❄️👸⛄", "Frozen"], ["🎈🏠👴", "Up"], ["🐉🛁👧🏮", "Spirited Away"]
+  ];
+  let eRounds, eIdx, eScore;
+  const shuffle = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  function startEmoji() { eRounds = shuffle(EMOJI).slice(0, 8); eIdx = 0; eScore = 0; showEmoji(); }
+  function showEmoji() {
+    const [emo, answer] = eRounds[eIdx];
+    $("#e-score").textContent = `round ${eIdx + 1} of 8 · score ${eScore}`;
+    $("#e-q").textContent = emo;
+    $("#e-msg").textContent = "";
+    $("#e-next").hidden = true;
+    const wrong = shuffle(EMOJI.map((x) => x[1]).filter((t) => t !== answer)).slice(0, 3);
+    const box = $("#e-opts");
+    box.innerHTML = "";
+    shuffle([answer, ...wrong]).forEach((title) => {
+      const b = document.createElement("button");
+      b.className = "opt"; b.type = "button"; b.textContent = title;
+      b.addEventListener("click", () => {
+        box.querySelectorAll(".opt").forEach((o) => { o.disabled = true; if (o.textContent === answer) o.classList.add("right"); });
+        if (title === answer) { eScore++; $("#e-msg").textContent = "Yes!"; }
+        else { b.classList.add("wrong"); $("#e-msg").textContent = `It was ${answer}.`; }
+        $("#e-score").textContent = `round ${eIdx + 1} of 8 · score ${eScore}`;
+        $("#e-next").textContent = eIdx === 7 ? "See my score" : "Next";
+        $("#e-next").hidden = false;
+      });
+      box.appendChild(b);
+    });
+  }
+  $("#e-next").addEventListener("click", () => {
+    if (eIdx === 8) { startEmoji(); return; }
+    if (eIdx < 7) { eIdx++; showEmoji(); return; }
+    $("#e-q").textContent = eScore >= 6 ? "🍿🏆" : eScore >= 3 ? "🍿🙂" : "🍿😅";
+    $("#e-opts").innerHTML = "";
+    $("#e-msg").textContent = `You got ${eScore} of 8. ${eScore >= 6 ? "Movie buff!" : "Not bad. Go log some films!"}`;
+    $("#e-next").textContent = "Play again";
+    $("#e-next").hidden = false;
+    eIdx = 8;
+  });
+  startEmoji();
+
+  /* ---------- dessert catch ---------- */
+  const cv = $("#catch"), cx = cv.getContext("2d");
+  const GOOD = ["🍰", "🍫", "🥭", "🍨", "🧁", "🍪", "🎂", "🥤"];
+  let W = 0, H = 320, bowl = 0, items = [], cScore = 0, timeLeft = 30, running = false, lastTs = 0, spawnIn = 0, rafId = 0, keyDir = 0, pops = [];
+  function sizeCanvas() {
+    const dpr = window.devicePixelRatio || 1;
+    W = cv.clientWidth || 500;
+    cv.width = W * dpr; cv.height = H * dpr;
+    cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (!bowl) bowl = W / 2;
+    draw();
+  }
+  function draw() {
+    cx.clearRect(0, 0, W, H);
+    cx.textAlign = "center"; cx.textBaseline = "middle";
+    cx.font = "28px system-ui, 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif";
+    items.forEach((it) => cx.fillText(it.e, it.x, it.y));
+    cx.fillStyle = css("--candy");
+    cx.beginPath();
+    cx.moveTo(bowl - 38, H - 34);
+    cx.quadraticCurveTo(bowl, H - 2, bowl + 38, H - 34);
+    cx.closePath();
+    cx.fill();
+    cx.font = "600 15px Figtree, system-ui, sans-serif";
+    pops.forEach((p) => { cx.globalAlpha = Math.max(0, p.life); cx.fillStyle = p.good ? css("--hit") : css("--rose"); cx.fillText(p.t, p.x, p.y); });
+    cx.globalAlpha = 1;
+  }
+  function tick(ts) {
+    const dt = Math.min(0.05, (ts - lastTs) / 1000 || 0);
+    lastTs = ts;
+    timeLeft -= dt;
+    bowl = Math.max(38, Math.min(W - 38, bowl + keyDir * 420 * dt));
+    spawnIn -= dt;
+    if (spawnIn <= 0) {
+      spawnIn = Math.max(0.28, 0.65 - (30 - timeLeft) * 0.012);
+      const bad = Math.random() < 0.18;
+      items.push({ x: 20 + Math.random() * (W - 40), y: -20, v: 110 + Math.random() * 90 + (30 - timeLeft) * 4, e: bad ? "🥦" : GOOD[Math.floor(Math.random() * GOOD.length)], bad });
+    }
+    items = items.filter((it) => {
+      it.y += it.v * dt;
+      if (it.y > H - 46 && it.y < H - 18 && Math.abs(it.x - bowl) < 40) {
+        cScore += it.bad ? -2 : 1;
+        pops.push({ x: it.x, y: H - 60, t: it.bad ? "-2" : "+1", good: !it.bad, life: 1 });
+        return false;
+      }
+      return it.y < H + 20;
+    });
+    pops = pops.filter((p) => { p.y -= 40 * dt; p.life -= dt * 1.6; return p.life > 0; });
+    $("#c-score").textContent = `score ${cScore} · ${Math.max(0, Math.ceil(timeLeft))}s`;
+    draw();
+    if (timeLeft <= 0) { endCatch(); return; }
+    rafId = requestAnimationFrame(tick);
+  }
+  function startCatch() {
+    sizeCanvas();
+    items = []; pops = []; cScore = 0; timeLeft = 30; spawnIn = 0; running = true;
+    $("#catch-over").hidden = true;
+    lastTs = performance.now();
+    rafId = requestAnimationFrame(tick);
+  }
+  function endCatch() {
+    running = false;
+    cancelAnimationFrame(rafId);
+    $("#catch-msg").textContent = cScore >= 25 ? `${cScore} sweets! You have a real sweet tooth.` : `You caught ${cScore} ${cScore === 1 ? "sweet" : "sweets"}. Try again?`;
+    $("#catch-start").textContent = "Play again";
+    $("#catch-over").hidden = false;
+  }
+  function stopCatch() {
+    if (!running) return;
+    running = false;
+    cancelAnimationFrame(rafId);
+    $("#catch-msg").textContent = "Paused. Start a fresh round?";
+    $("#catch-over").hidden = false;
+  }
+  $("#catch-start").addEventListener("click", startCatch);
+  cv.addEventListener("pointermove", (e) => { const r = cv.getBoundingClientRect(); bowl = Math.max(38, Math.min(W - 38, e.clientX - r.left)); if (!running) draw(); });
+  cv.addEventListener("pointerdown", (e) => { const r = cv.getBoundingClientRect(); bowl = Math.max(38, Math.min(W - 38, e.clientX - r.left)); });
+  window.addEventListener("resize", () => { if (activeGame === "catch") sizeCanvas(); });
+
+  /* ---------- where to next? ---------- */
+  const COUNTRIES = [
+    ["South Korea", 36.5, 127.9], ["Japan", 36.2, 138.3], ["China", 35.9, 104.2], ["India", 22.0, 79.0],
+    ["Nepal", 28.4, 84.1], ["Sri Lanka", 7.9, 80.8], ["Bangladesh", 23.7, 90.4], ["Pakistan", 30.4, 69.3],
+    ["Thailand", 15.9, 100.9], ["Vietnam", 14.1, 108.3], ["Indonesia", -2.5, 118.0], ["Philippines", 12.9, 121.8],
+    ["Malaysia", 4.2, 102.0], ["Singapore", 1.35, 103.8], ["Mongolia", 46.9, 103.8], ["Australia", -25.3, 133.8],
+    ["New Zealand", -41.0, 174.0], ["United Arab Emirates", 23.4, 53.8], ["Saudi Arabia", 23.9, 45.1], ["Turkey", 39.0, 35.2],
+    ["Iran", 32.4, 53.7], ["Israel", 31.0, 34.9], ["Egypt", 26.8, 30.8], ["Morocco", 31.8, -7.1],
+    ["Nigeria", 9.1, 8.7], ["Kenya", 0.0, 37.9], ["South Africa", -30.6, 22.9], ["Ethiopia", 9.1, 40.5],
+    ["Ghana", 7.9, -1.0], ["France", 46.2, 2.2], ["Germany", 51.2, 10.4], ["Italy", 41.9, 12.6],
+    ["Spain", 40.5, -3.7], ["Portugal", 39.4, -8.2], ["United Kingdom", 55.4, -3.4], ["Ireland", 53.4, -8.2],
+    ["Netherlands", 52.1, 5.3], ["Belgium", 50.5, 4.5], ["Switzerland", 46.8, 8.2], ["Austria", 47.5, 14.6],
+    ["Norway", 60.5, 8.5], ["Sweden", 60.1, 18.6], ["Finland", 61.9, 25.7], ["Denmark", 56.3, 9.5],
+    ["Iceland", 65.0, -19.0], ["Poland", 51.9, 19.1], ["Greece", 39.1, 21.8], ["Russia", 61.5, 105.3],
+    ["Ukraine", 48.4, 31.2], ["Canada", 56.1, -106.3], ["United States", 37.1, -95.7], ["Mexico", 23.6, -102.6],
+    ["Cuba", 21.5, -77.8], ["Brazil", -14.2, -51.9], ["Argentina", -38.4, -63.6], ["Chile", -35.7, -71.5],
+    ["Peru", -9.2, -75.0], ["Colombia", 4.6, -74.3]
+  ];
+  const ALIASES = { "korea": "South Korea", "usa": "United States", "us": "United States", "america": "United States", "uk": "United Kingdom", "england": "United Kingdom", "uae": "United Arab Emirates", "holland": "Netherlands" };
+  const byName = new Map(COUNTRIES.map((c) => [c[0].toLowerCase(), c]));
+  $("#countries").innerHTML = COUNTRIES.map((c) => `<option value="${c[0]}"></option>`).join("");
+  const MAX_TRIES = 8, HALF_EARTH = 20015;
+  let secret, cGuesses, cOver;
+  const rad = (d) => d * Math.PI / 180;
+  function distance(a, b) {
+    const dLat = rad(b[1] - a[1]), dLon = rad(b[2] - a[2]);
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos(rad(a[1])) * Math.cos(rad(b[1])) * Math.sin(dLon / 2) ** 2;
+    return Math.round(2 * 6371 * Math.asin(Math.sqrt(h)));
+  }
+  function bearing(a, b) {
+    const p1 = rad(a[1]), p2 = rad(b[1]), dl = rad(b[2] - a[2]);
+    const y = Math.sin(dl) * Math.cos(p2);
+    const x = Math.cos(p1) * Math.sin(p2) - Math.sin(p1) * Math.cos(p2) * Math.cos(dl);
+    return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+  }
+  const compass = (deg) => ["north", "northeast", "east", "southeast", "south", "southwest", "west", "northwest"][Math.round(deg / 45) % 8];
+  function newCountry() {
+    let next;
+    do { next = COUNTRIES[Math.floor(Math.random() * COUNTRIES.length)]; } while (next === secret);
+    secret = next; cGuesses = []; cOver = false;
+    $("#clog").innerHTML = ""; $("#g-msg").textContent = "";
+    $("#g-tries").textContent = MAX_TRIES + " tries left";
+    $("#g-new").hidden = true; $("#cguess").disabled = false; $("#cguess").value = "";
+  }
+  $("#cform").addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (cOver) return;
+    const raw = $("#cguess").value.trim().toLowerCase();
+    if (!raw) return;
+    const c = byName.get(raw) || byName.get((ALIASES[raw] || "").toLowerCase());
+    if (!c) { $("#g-msg").textContent = "I don't have that one. Pick a country from the list."; return; }
+    if (cGuesses.includes(c)) { $("#g-msg").textContent = `You already tried ${c[0]}.`; return; }
+    cGuesses.push(c);
+    $("#cguess").value = "";
+    const km = distance(c, secret), win = c === secret;
+    const warmth = win ? 100 : Math.max(4, Math.round(100 * (1 - km / HALF_EARTH)));
+    const deg = bearing(c, secret);
+    const li = document.createElement("li");
+    if (win) li.classList.add("win");
+    li.innerHTML = `<span></span><span class="km"></span><span class="dir"></span><span class="heat" style="width:${warmth}%"></span>`;
+    li.children[0].textContent = c[0];
+    li.children[1].textContent = win ? "found it" : km.toLocaleString() + " km";
+    const dir = li.children[2];
+    if (win) dir.textContent = "✓";
+    else { dir.textContent = "↑"; dir.style.transform = `rotate(${deg}deg)`; dir.setAttribute("aria-label", "head " + compass(deg)); }
+    $("#clog").prepend(li);
+    const left = MAX_TRIES - cGuesses.length;
+    $("#g-tries").textContent = left + (left === 1 ? " try left" : " tries left");
+    if (win) { cOver = true; $("#g-msg").textContent = `Yes! It was ${secret[0]}, in ${cGuesses.length} ${cGuesses.length === 1 ? "try" : "tries"}.`; }
+    else if (left === 0) { cOver = true; $("#g-msg").textContent = `Out of tries. It was ${secret[0]}.`; }
+    else $("#g-msg").textContent = warmth > 85 ? "Very warm. Keep going!" : warmth > 65 ? "Getting warmer." : "Cold. Try another direction.";
+    if (cOver) { $("#g-new").hidden = false; $("#cguess").disabled = true; }
+  });
+  $("#g-new").addEventListener("click", newCountry);
+  newCountry();
+
+  /* ---------- keyboard for the games ---------- */
+  document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    const el = document.activeElement, tag = el && el.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA") return;
+    const games = $("#play").getBoundingClientRect();
+    const onScreen = games.top < innerHeight && games.bottom > 0;
+    if (!onScreen) return;
+    if (activeGame === "word") {
+      if (e.key === "Enter" || e.key === "Backspace") {
+        if (tag === "BUTTON" && e.key === "Enter" && !el.classList.contains("key")) return;
+        e.preventDefault(); press(e.key);
+      } else if (/^[a-z]$/i.test(e.key)) press(e.key.toUpperCase());
+    } else if (activeGame === "catch" && running && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {
+      e.preventDefault(); keyDir = e.key === "ArrowLeft" ? -1 : 1;
+    }
+  });
+  document.addEventListener("keyup", (e) => { if (e.key === "ArrowLeft" || e.key === "ArrowRight") keyDir = 0; });
+})();
+</script>
+<script async src="https://www.instagram.com/embed.js"></script>
+</body>
+</html>

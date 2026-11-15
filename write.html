@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Write a Thought</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+:root {
+  --paper: #FBF6F4; --surface: #FFFFFF; --ink: #34252D; --muted: #7E6872; --line: #EBDDDA; --candy: #E5679E; --candy-soft: #FCE3EE; --on: #FFFFFF;
+  --display: "Young Serif", Georgia, serif; --body: "Figtree", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: dark; --paper: #1C1519; --surface: #261D23; --ink: #F4E8EB; --muted: #B49CA6; --line: #3B2E36; --candy: #F592BE; --candy-soft: #3F2232; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); line-height: 1.6; }
+main { max-width: 620px; margin: 0 auto; padding-block: 40px 60px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 18px; }
+h1 { font-family: var(--display); font-weight: 400; font-size: 2rem; margin: 0; }
+p { margin: 0; color: var(--muted); }
+label { font-family: var(--mono); font-size: .8125rem; color: var(--muted); }
+textarea { width: 100%; min-height: 180px; padding: 14px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; resize: vertical; }
+textarea:focus, button:focus-visible { outline: 2px solid var(--candy); outline-offset: 2px; }
+pre { margin: 0; padding: 14px; border-radius: 14px; background: var(--candy-soft); font-family: var(--mono); font-size: .8125rem; white-space: pre-wrap; word-break: break-word; }
+button { font: inherit; font-weight: 500; padding: 12px 18px; border-radius: 999px; border: 0; background: var(--candy); color: var(--on); cursor: pointer; justify-self: start; }
+ol { margin: 0; padding-left: 1.2em; color: var(--muted); display: grid; gap: 4px; }
+.status { min-height: 1.5em; font-weight: 500; color: var(--ink); }
+a { color: var(--candy); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Write a thought</h1>
+  <p>This page only helps you format a thought. Nothing gets posted until you save it on GitHub, and only you can do that.</p>
+  <label for="text">what's on your mind?</label>
+  <textarea id="text" placeholder="type here…"></textarea>
+  <label for="preview">this is what gets added</label>
+  <pre id="preview"></pre>
+  <button id="go" type="button">Copy &amp; open GitHub</button>
+  <p class="status" id="status" aria-live="polite"></p>
+  <ol>
+    <li>On GitHub, tap at the very top of the file, right under the hidden note that ends with <code>--&gt;</code>.</li>
+    <li>Paste.</li>
+    <li>Press <b>Commit changes</b>, then <b>Commit changes</b> again.</li>
+    <li>Your thought shows up on the site within a minute or two.</li>
+  </ol>
+  <p><a href="./#thoughts">← back to my site</a></p>
+</main>
+<script>
+  const EDIT_URL = "https://github.com/khushi-ks1/personal-page/edit/main/thoughts.md";
+  const text = document.getElementById("text"), preview = document.getElementById("preview"), status = document.getElementById("status");
+  function stamp() {
+    const d = new Date(), p = (n) => String(n).padStart(2, "0");
+    const off = -d.getTimezoneOffset(), sign = off >= 0 ? "+" : "-";
+    return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())} ${sign}${p(Math.floor(Math.abs(off) / 60))}:${p(Math.abs(off) % 60)}`;
+  }
+  function entry() { return `\n## ${stamp()}\n${text.value.trim().replace(/^## /gm, "")}\n`; }
+  function update() { preview.textContent = entry(); }
+  text.addEventListener("input", update);
+  setInterval(update, 20000);
+  update();
+  document.getElementById("go").addEventListener("click", async () => {
+    if (!text.value.trim()) { status.textContent = "Write something first."; return; }
+    const value = entry();
+    preview.textContent = value;
+    try { await navigator.clipboard.writeText(value); status.textContent = "Copied! Now paste it on GitHub."; }
+    catch (e) { status.textContent = "Couldn't copy automatically. Select the pink box above and copy it."; }
+    window.open(EDIT_URL, "_blank", "noopener");
+  });
+</script>
+</body>
+</html>
