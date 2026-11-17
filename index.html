@@ -485,7 +485,7 @@ section.block { padding-block: 56px; border-top: 1px solid var(--line); display:
 /* sweets */
 /* a sprinkles-on-pink panel, like a bakery box */
 .dessert-panel {
-  position: relative; display: grid; gap: 28px; padding: clamp(22px, 4vw, 40px); border-radius: 28px; overflow: hidden;
+  position: relative; display: grid; gap: 18px; padding: clamp(18px, 3vw, 26px); border-radius: 24px; overflow: hidden; max-width: 700px;
   background-color: var(--candy-soft);
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg stroke-width='4' stroke-linecap='round' opacity='.3'%3E%3Cpath stroke='%23E5679E' d='M14 20l10 6'/%3E%3Cpath stroke='%238C78C2' d='M62 12l-4 11'/%3E%3Cpath stroke='%23DDB45A' d='M104 30l11-3'/%3E%3Cpath stroke='%236F9E7C' d='M30 70l3 11'/%3E%3Cpath stroke='%23CF6B6E' d='M80 64l9 7'/%3E%3Cpath stroke='%238C78C2' d='M122 82l-10 5'/%3E%3Cpath stroke='%23DDB45A' d='M18 118l11-2'/%3E%3Cpath stroke='%23E5679E' d='M66 112l-6 9'/%3E%3Cpath stroke='%236F9E7C' d='M108 120l8 8'/%3E%3C/g%3E%3C/svg%3E"),
@@ -495,51 +495,52 @@ section.block { padding-block: 56px; border-top: 1px solid var(--line); display:
   border: 1px solid color-mix(in srgb, var(--candy) 25%, transparent);
 }
 .dessert-panel .head p { color: var(--ink); opacity: .8; }
-.sweet-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; }
+.sweet-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px; }
 .sweet {
-  background: color-mix(in srgb, var(--surface) 88%, transparent); border-radius: 20px; padding: 22px 18px 18px;
-  display: grid; gap: 4px; justify-items: center; text-align: center; border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 88%, transparent); border-radius: 16px; padding: 10px 14px;
+  display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 12px; align-items: center; border: 1px solid var(--line);
   box-shadow: 0 8px 24px rgb(0 0 0 / .06); transition: transform .3s cubic-bezier(.2,.7,.2,1);
 }
-.sweet:nth-child(2) { transform: translateY(10px); }
-.sweet:hover { transform: translateY(-6px); }
-.sweet b { font-family: var(--display); font-weight: 400; font-size: 1.25rem; margin-top: 6px; }
-.sweet .hand { font-family: var(--hand); font-size: 1.3rem; color: var(--muted); line-height: 1.1; }
+.sweet:hover { transform: translateY(-3px); }
+.sweet .sticker { grid-row: span 2; }
+.sweet b { font-family: var(--display); font-weight: 400; font-size: 1.05rem; align-self: end; }
+.sweet .hand { font-family: var(--hand); font-size: 1.1rem; color: var(--muted); line-height: 1.1; align-self: start; }
 .sticker {
-  width: 112px; height: 112px; overflow: visible; transform: rotate(-6deg);
+  width: 62px; height: 62px; overflow: visible; transform: rotate(-6deg);
   filter: drop-shadow(0 2px 0 rgb(0 0 0 / .06)) drop-shadow(0 8px 12px rgb(0 0 0 / .16));
   transition: transform .4s cubic-bezier(.3,1.5,.5,1);
 }
 .sweet:nth-child(2) .sticker { transform: rotate(5deg); }
 .sweet:hover .sticker { transform: rotate(0deg) scale(1.1); }
 .sticker .die { fill: #FFFFFF; stroke: #FFFFFF; stroke-width: 12; stroke-linejoin: round; }
-.dessert-panel .gallery { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.dessert-panel .gallery { grid-template-columns: repeat(3, minmax(0, 190px)); gap: 12px; }
+.dessert-panel .gallery .slot { border-radius: 12px; }
 .board .btn, .emoji-play .btn, .catch-over .btn { justify-self: center; }
-.dessert-panel .gallery figcaption { font-family: var(--hand); font-size: 1.2rem; color: var(--ink); }
+.dessert-panel .gallery figcaption { font-family: var(--hand); font-size: 1.05rem; line-height: 1.1; color: var(--ink); }
 
 /* games live inside the sections they belong to */
-.puzzle { padding-block: 8px 56px; }
+.mini-games { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 22px; align-items: start; max-width: 840px; }
+.emoji-card { max-width: 420px; }
 .game-card {
-  position: relative; display: grid; gap: 24px; align-items: center; border-radius: 28px; padding: clamp(20px, 4vw, 36px);
+  position: relative; display: grid; gap: 14px; align-content: start; border-radius: 22px; padding: 18px;
   background:
     radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--surface) 70%, transparent) 0 2px, transparent 3px) 0 0 / 46px 46px,
     linear-gradient(135deg, var(--lilac-soft), var(--candy-soft) 55%, var(--rose-soft));
   border: 1px solid color-mix(in srgb, var(--lilac) 30%, transparent);
   box-shadow: 0 1px 0 rgb(255 255 255 / .5) inset, 0 20px 50px -20px color-mix(in srgb, var(--lilac) 55%, transparent);
 }
-@media (min-width: 820px) { .game-card { grid-template-columns: minmax(220px, .8fr) 1.2fr; } }
-.game-head { display: grid; gap: 10px; align-content: start; justify-items: start; }
-.game-head h3 { font-size: clamp(1.6rem, 4vw, 2.2rem); }
-.game-head p { color: var(--ink); opacity: .78; max-width: 40ch; }
+.game-head { display: grid; gap: 4px; justify-items: start; }
+.game-head h3 { font-size: 1.3rem; }
+.game-head p { color: var(--ink); opacity: .75; font-size: .875rem; }
 .game-tag {
-  font-family: var(--hand); font-weight: 700; font-size: 1.15rem; color: var(--on-tile); background: var(--lilac);
-  padding: 2px 14px; border-radius: 999px; transform: rotate(-3deg); box-shadow: 0 4px 10px color-mix(in srgb, var(--lilac) 40%, transparent);
+  font-family: var(--hand); font-weight: 700; font-size: 1rem; color: var(--on-tile); background: var(--lilac);
+  padding: 0 12px; border-radius: 999px; transform: rotate(-3deg); box-shadow: 0 4px 10px color-mix(in srgb, var(--lilac) 40%, transparent);
 }
 .legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: .875rem; }
 .legend li { display: flex; gap: 8px; align-items: center; }
 .legend i { width: 18px; height: 18px; border-radius: 5px; display: inline-block; }
 .legend .hit { background: var(--hit); } .legend .near { background: var(--near); } .legend .miss { background: var(--miss); }
-.board { display: grid; gap: 14px; justify-items: center; }
+.board { display: grid; gap: 8px; justify-items: center; }
 .msg { min-height: 1.6em; font-weight: 600; text-align: center; }
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
 .gallery .slot { aspect-ratio: 4 / 3; border-radius: var(--radius); border: 2px dashed color-mix(in srgb, var(--candy) 40%, transparent); }
@@ -672,14 +673,14 @@ html.intro .pin-note, html.intro .note-tab { display: none; }
 .empty-note { color: var(--muted); }
 
 /* games: tiles, keyboard, options */
-.grid { display: grid; gap: 7px; perspective: 600px; }
-.row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+.grid { display: grid; gap: 5px; perspective: 600px; }
+.row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
 .row.shake { animation: shake .4s; }
 @keyframes shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
 .cell {
-  width: clamp(46px, 13vw, 58px); aspect-ratio: 1; border-radius: 12px;
+  width: clamp(36px, 10vw, 42px); aspect-ratio: 1; border-radius: 9px;
   background: color-mix(in srgb, var(--surface) 85%, transparent); border: 2px solid color-mix(in srgb, var(--lilac) 25%, var(--line));
-  display: grid; place-items: center; font-family: var(--display); font-size: 1.6rem; text-transform: uppercase; color: var(--ink);
+  display: grid; place-items: center; font-family: var(--display); font-size: 1.2rem; text-transform: uppercase; color: var(--ink);
   box-shadow: 0 3px 0 color-mix(in srgb, var(--lilac) 18%, transparent);
   transition: border-color .15s, transform .15s;
 }
@@ -688,15 +689,15 @@ html.intro .pin-note, html.intro .note-tab { display: none; }
 .cell.hit, .cell.near, .cell.miss { color: var(--on-tile); border-color: transparent; animation: flip .5s ease both; box-shadow: 0 3px 0 rgb(0 0 0 / .12); }
 .cell.hit { background: var(--hit); } .cell.near { background: var(--near); } .cell.miss { background: var(--miss); }
 @keyframes flip { 0% { transform: rotateX(0); } 50% { transform: rotateX(90deg); } 100% { transform: rotateX(0); } }
-.keys { display: grid; gap: 7px; width: 100%; max-width: 500px; }
-.keys .krow { display: flex; gap: 5px; justify-content: center; }
+.keys { display: grid; gap: 5px; width: 100%; max-width: 330px; }
+.keys .krow { display: flex; gap: 3px; justify-content: center; }
 .key {
-  flex: 1; max-width: 42px; height: 52px; border: 0; border-radius: 10px; cursor: pointer;
+  flex: 1; max-width: 30px; height: 38px; border: 0; border-radius: 7px; cursor: pointer; padding: 0;
   background: color-mix(in srgb, var(--surface) 90%, transparent); color: var(--ink);
-  font-family: var(--body); font-size: .9375rem; font-weight: 600;
+  font-family: var(--body); font-size: .8125rem; font-weight: 600;
   box-shadow: 0 3px 0 color-mix(in srgb, var(--lilac) 30%, var(--line)); transition: transform .1s, background .2s, box-shadow .1s;
 }
-.key.wide { max-width: 66px; flex: 1.5; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; }
+.key.wide { max-width: 46px; flex: 1.5; font-size: .625rem; text-transform: uppercase; letter-spacing: .02em; }
 .key:hover { background: var(--surface); }
 .key:active { transform: translateY(3px); box-shadow: none; }
 .key.hit { background: var(--hit); color: var(--on-tile); }
@@ -704,15 +705,15 @@ html.intro .pin-note, html.intro .note-tab { display: none; }
 .key.miss { background: var(--miss); color: var(--on-tile); }
 .score { font-family: var(--mono); font-size: var(--step--1); color: var(--muted); font-variant-numeric: tabular-nums; }
 
-.emoji-play { display: grid; gap: 16px; justify-items: center; }
+.emoji-play { display: grid; gap: 10px; justify-items: center; }
 .emoji-q {
-  font-size: clamp(2.4rem, 9vw, 3.4rem); letter-spacing: .12em; text-align: center; min-height: 1.5em;
-  background: color-mix(in srgb, var(--surface) 80%, transparent); border-radius: 22px; padding: 12px 26px;
+  font-size: 2rem; letter-spacing: .1em; text-align: center; min-height: 1.5em;
+  background: color-mix(in srgb, var(--surface) 80%, transparent); border-radius: 16px; padding: 6px 18px;
   box-shadow: 0 10px 24px -12px rgb(0 0 0 / .25);
 }
-.opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: 480px; }
+.opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; width: 100%; }
 .opt {
-  padding: 13px 12px; border-radius: 14px; border: 0; cursor: pointer; font-size: .9375rem; font-weight: 500;
+  padding: 9px 8px; border-radius: 11px; border: 0; cursor: pointer; font-size: .8125rem; font-weight: 500;
   background: color-mix(in srgb, var(--surface) 90%, transparent); color: var(--ink);
   box-shadow: 0 3px 0 color-mix(in srgb, var(--lilac) 30%, var(--line)); transition: background .2s, transform .15s;
 }
@@ -721,10 +722,9 @@ html.intro .pin-note, html.intro .note-tab { display: none; }
 .opt.right { background: var(--hit); color: var(--on-tile); }
 .opt.wrong { background: var(--miss); color: var(--on-tile); }
 
-.catch-card { margin-top: 8px; }
 .catch-wrap { position: relative; width: 100%; }
 #catch {
-  width: 100%; height: 320px; display: block; border-radius: 18px; touch-action: none; cursor: none;
+  width: 100%; height: 250px; display: block; border-radius: 14px; touch-action: none; cursor: none;
   background: linear-gradient(color-mix(in srgb, var(--surface) 75%, transparent), color-mix(in srgb, var(--candy-soft) 80%, transparent));
 }
 .catch-over { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 12px; text-align: center; padding: 16px; background: color-mix(in srgb, var(--paper) 60%, transparent); border-radius: 18px; backdrop-filter: blur(2px); }
@@ -821,11 +821,11 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
       <a href="#watching">watching</a>
       <a href="#listening">listening</a>
       <a href="#sweets">sweets</a>
+      <a href="#games">play</a>
       <a href="#bts">bts</a>
       <a href="#places">places</a>
       <a href="#moments">moments</a>
       <a href="#thoughts">thoughts</a>
-      <a href="#play">play</a>
     </nav>
     <div class="bg-pick">
       <button class="bg-btn" id="bg-btn" type="button" aria-expanded="false" aria-controls="bg-menu" aria-label="Change the background">
@@ -914,28 +914,6 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
       </div>
     </section>
 
-    <section class="puzzle" id="play" aria-labelledby="puzzle-title">
-      <div class="game-card word-card" id="word-game">
-        <div class="game-head">
-          <span class="game-tag">a little puzzle ✦</span>
-          <h3 id="puzzle-title">Guess my word</h3>
-          <p>Wordle rules: six tries to find the five-letter word, and every guess has to be a real word. The answer is always something I love.</p>
-          <ul class="legend" aria-label="How the colors work">
-            <li><i class="hit"></i>right letter, right spot</li>
-            <li><i class="near"></i>in the word, wrong spot</li>
-            <li><i class="miss"></i>not in the word</li>
-          </ul>
-          <span class="score" id="w-stats"></span>
-        </div>
-        <div class="board">
-          <div class="grid" id="grid" aria-label="Guesses"></div>
-          <p class="msg" id="word-msg" aria-live="polite"></p>
-          <div class="keys" id="keys"></div>
-          <button class="btn candy" id="word-new" type="button" hidden>Play another word</button>
-        </div>
-      </div>
-    </section>
-
     <section class="block" id="watching">
       <div class="head">
         <span class="label">watching</span>
@@ -974,7 +952,7 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
         <div class="game-head">
           <span class="game-tag">mini game</span>
           <h3>Guess the movie</h3>
-          <p>Name the film from the emojis. Eight rounds, and a lot of them are my favorites.</p>
+          <p>Name the film from the emojis. Eight rounds.</p>
           <span class="score" id="e-score">round 1 of 8 · score 0</span>
         </div>
         <div class="emoji-play">
@@ -1092,15 +1070,37 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
         <div class="gallery">
           <figure><div class="slot" data-src="images/food/1.jpg" data-alt="Chocolate cake with ice cream, Happy Birthday Maa written in chocolate"></div><figcaption>chocolate cake for maa's birthday</figcaption></figure>
           <figure><div class="slot" data-src="images/food/2.jpg" data-alt="A cup of DBC, death by chocolate ice cream, with nuts and a cherry"></div><figcaption>DBC, death by chocolate</figcaption></figure>
-          <figure><div class="slot" data-src="images/food/3.jpg" data-alt="A plate of dahi papdi chaat topped with sev"></div><figcaption>dahi papdi chaat (a savory break)</figcaption></figure>
+          <figure><div class="slot" data-src="images/food/3.jpg" data-alt="A raj kachori topped with curd, chutney and sev"></div><figcaption>raj kachori (a savory break)</figcaption></figure>
         </div>
       </div>
 
+    </section>
+
+    <section class="block" id="games">
+      <div class="head">
+        <span class="label">play</span>
+        <h2>Take a little break</h2>
+      </div>
+      <div class="mini-games">
+        <div class="game-card word-card" id="word-game">
+        <div class="game-head">
+          <span class="game-tag">a little puzzle ✦</span>
+          <h3 id="puzzle-title">Guess my word</h3>
+          <p>Six tries, real words only. The answer is always something I love.</p>
+          <span class="score" id="w-stats"></span>
+        </div>
+        <div class="board">
+          <div class="grid" id="grid" aria-label="Guesses"></div>
+          <p class="msg" id="word-msg" aria-live="polite"></p>
+          <div class="keys" id="keys"></div>
+          <button class="btn candy" id="word-new" type="button" hidden>Play another word</button>
+        </div>
+      </div>
       <div class="game-card catch-card" id="catch-game">
         <div class="game-head">
           <span class="game-tag">mini game</span>
           <h3>Catch the sweets</h3>
-          <p>Move the bowl to catch falling sweets, +1 each. Dodge the broccoli, it costs you two. 30 seconds.</p>
+          <p>Catch the sweets, dodge the broccoli. 30 seconds.</p>
           <span class="score" id="c-score">score 0 · 30s</span>
         </div>
         <div class="catch-wrap">
@@ -1110,6 +1110,7 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
             <button class="btn candy" id="catch-start" type="button">Start</button>
           </div>
         </div>
+      </div>
       </div>
     </section>
 
@@ -1921,7 +1922,7 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
   /* ---------- dessert catch ---------- */
   const cv = $("#catch"), cx = cv.getContext("2d");
   const GOOD = ["🍰", "🍫", "🥭", "🍨", "🧁", "🍪", "🎂", "🥤"];
-  let W = 0, H = 320, bowl = 0, items = [], cScore = 0, timeLeft = 30, running = false, lastTs = 0, spawnIn = 0, rafId = 0, keyDir = 0, pops = [];
+  let W = 0, H = 250, bowl = 0, items = [], cScore = 0, timeLeft = 30, running = false, lastTs = 0, spawnIn = 0, rafId = 0, keyDir = 0, pops = [];
   function sizeCanvas() {
     const dpr = window.devicePixelRatio || 1;
     W = cv.clientWidth || 500;
