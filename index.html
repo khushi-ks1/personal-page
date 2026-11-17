@@ -23,7 +23,7 @@
 (function () {
   try {
     var d = document.documentElement;
-    if (!matchMedia("(prefers-reduced-motion: reduce)").matches && !sessionStorage.getItem("introSeen")) {
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
       d.classList.add("intro");
       setTimeout(function () { d.classList.remove("intro"); }, 6000);
     }
@@ -159,7 +159,7 @@ p { margin: 0; }
 @media (min-width: 860px) { .hero { grid-template-columns: 1fr 1.1fr; gap: 56px; } }
 .hello { display: grid; gap: 18px; position: relative; }
 .hello h1 {
-  font-family: var(--intro); font-weight: 650; font-size: clamp(2.2rem, 5.4vw, 3.3rem);
+  font-family: var(--intro); font-weight: 650; font-size: clamp(2rem, 4.8vw, 3rem);
   line-height: 1.06; letter-spacing: -0.03em; font-variation-settings: "opsz" 96;
 }
 .hello h1 em {
@@ -708,8 +708,8 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
   <main>
     <section class="hero">
       <div class="hello load">
-        <span class="label">hi, welcome in</span>
-        <h1>I'm Khushi. I like <em>driving around</em>, good R&amp;B and logging every movie I watch.</h1>
+        <span class="label">oh hey, you're here</span>
+        <h1>I'm Khushi. I like <em>driving around</em> with some good music playing in the car, and I love da&nbsp;movies.</h1>
         <p>This is my little corner of the internet. Press play, let the car drive, and stay for a round of something before you go.</p>
         <div class="chips">
           <span class="chip">movies</span><span class="chip">R&amp;B</span><span class="chip">k-dramas</span><span class="chip">anime</span><span class="chip">BTS</span><span class="chip">anything chocolate</span>
@@ -1018,7 +1018,7 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
   </main>
 
   <footer>
-    <span>made by Khushi, with a little help from Tom</span>
+    <span>made by Khushi ♡</span>
     <a href="#top">back to top ↑</a>
   </footer>
 </div>
@@ -1042,7 +1042,6 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
   (function intro() {
     const root = document.documentElement;
     if (!root.classList.contains("intro")) return;
-    try { sessionStorage.setItem("introSeen", "1"); } catch (e) {}
     const COVER = "https://is1-ssl.mzstatic.com/image/thumb/";
     // [image, x, y, rotation, width, caption, style]   (x/y/width are in pile units, ~360 across)
     const CARDS = [
@@ -1076,7 +1075,7 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
     const hi = document.createElement("div");
     hi.className = "note hi";
     hi.style.setProperty("--d", (0.2 + CARDS.length * 0.1) + "s");
-    hi.innerHTML = "<b>hi, I'm Khushi ♡</b><small>welcome to my corner</small>";
+    hi.innerHTML = "<b>oh hey, you're here</b><small>I'm Khushi ♡</small>";
     pileEl.appendChild(hi);
     const skip = document.createElement("span");
     skip.className = "intro-skip";
