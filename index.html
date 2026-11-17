@@ -496,6 +496,29 @@ section.block { padding-block: 56px; border-top: 1px solid var(--line); display:
 .secret:hover { opacity: 1; transform: scale(1.3); }
 
 /* thoughts */
+/* moments: a scrapbook wall of polaroids */
+.moments { columns: 4 210px; column-gap: 24px; padding: 6px 4px; }
+.moment {
+  --t: -1.6deg; break-inside: avoid; display: inline-block; width: 100%; margin: 14px 0 22px; position: relative;
+  background: #FFFDF9; padding: 10px 10px 8px; border-radius: 3px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / .08), 0 10px 24px rgb(0 0 0 / .12);
+  transform: rotate(var(--t)); transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
+}
+.moment:nth-child(3n+2) { --t: 1.4deg; }
+.moment:nth-child(4n+3) { --t: -.6deg; }
+.moment:nth-child(5n) { --t: 2.2deg; }
+.moment:hover { transform: rotate(0deg) translateY(-6px) scale(1.02); box-shadow: 0 18px 34px rgb(0 0 0 / .2); z-index: 2; }
+.moment img { display: block; width: 100%; height: auto; border-radius: 1px; background: var(--candy-soft); }
+.moment figcaption { font-family: var(--hand); font-size: 1.35rem; line-height: 1.1; color: var(--note-ink); text-align: center; padding: 8px 4px 2px; }
+.moment:nth-child(4n+1)::before {   /* a strip of washi tape on some of them */
+  content: ""; position: absolute; top: -10px; left: 50%; width: 84px; height: 22px; margin-left: -42px; transform: rotate(-4deg);
+  background: color-mix(in srgb, var(--candy) 45%, transparent); opacity: .8;
+}
+.moment:nth-child(4n+3)::before {
+  content: ""; position: absolute; top: -9px; right: 14px; width: 64px; height: 20px; transform: rotate(8deg);
+  background: color-mix(in srgb, var(--lilac) 45%, transparent); opacity: .8;
+}
+
 /* sticky notes: same paper colors in light and dark mode, like real notes */
 .note {
   --tilt: -2deg; --paper-note: var(--note);
@@ -700,6 +723,7 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
       <a href="#sweets">sweets</a>
       <a href="#bts">bts</a>
       <a href="#places">places</a>
+      <a href="#moments">moments</a>
       <a href="#thoughts">thoughts</a>
       <a href="#play">play</a>
     </nav>
@@ -946,6 +970,14 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
       </div>
     </section>
 
+    <section class="block" id="moments">
+      <div class="head">
+        <span class="label">moments</span>
+        <h2>A few from my camera roll</h2>
+      </div>
+      <div class="moments" id="moment-wall"></div>
+    </section>
+
     <section class="block" id="thoughts">
       <div class="head">
         <span class="label">thoughts</span>
@@ -1052,7 +1084,7 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
       ["images/travel/2.jpg", 8, -132, 4, 112, "golden beach"],
       ["images/posters/interstellar.jpg", -48, 126, -6, 84, "", "tall bare"],
       ["images/travel/3.jpg", 92, -14, 11, 112, "nandi hills"],
-      [COVER + "Music211/v4/b6/cd/1a/b6cd1a5b-83af-a1e2-0ad7-ea530fcf2522/859722261219.jpg/300x300bb.jpg", -96, -10, -13, 92, "", "bare"],
+      ["images/moments/2.jpg", -96, -10, -13, 100, "dandiya!"],
       ["images/me/me.jpg", -6, -24, -3, 150, "me!"]
     ];
     const screen = document.createElement("div");
@@ -1377,6 +1409,28 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
     slot.dataset.alt = name;
     fillSlot(slot, `<span class="initials">${name.split(" ").map((w) => w[0]).join("").slice(0, 2)}</span>`);
     artists.appendChild(fig);
+  });
+
+  /* ---------- moments (photos live in images/moments/1.jpg, 2.jpg, ...) ---------- */
+  const MOMENTS = [
+    "golden hour, golden beach", "dandiya night ✨", "toes in the sand", "just me and the sea",
+    "ortus '24", "moon over the bay", "twirl!!", "sun-kissed", "sunrise from the top", "concert lights",
+    "writing in the sand", "night rides", "hi again", "adiyogi under big clouds", "wind in my hair", "100 km club 👟"
+  ];
+  const wall = $("#moment-wall");
+  MOMENTS.forEach((cap, i) => {
+    const fig = document.createElement("figure");
+    fig.className = "moment";
+    const img = new Image();
+    img.loading = "lazy";
+    img.decoding = "async";
+    img.alt = cap;
+    img.onerror = () => fig.remove();
+    img.src = `images/moments/${i + 1}.jpg`;
+    const fc = document.createElement("figcaption");
+    fc.textContent = cap;
+    fig.append(img, fc);
+    wall.appendChild(fig);
   });
 
   /* ---------- section reveal ---------- */
