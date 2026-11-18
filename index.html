@@ -53,8 +53,9 @@
   /* deeper shades of the same pinks, used where small text or white labels need to stay readable */
   --candy-ink: #B8456F;
   --btn-rose: #B5525A;
-  --btn-candy: #B8456F;
-  --on-accent: #FFFFFF;
+  --lilac-ink: #6E58A8;  /* deeper lilac behind text: tags, toasts */
+  --on-accent: #FFFFFF;  /* text that sits on any of the deep accents above */
+  --on-near: #2A1F0E;    /* dark letters on the yellow wordle tiles */
 
   --sky-top: #FBE3D2;
   --sky-bottom: #F6C3B7;
@@ -100,9 +101,9 @@
     --candy-soft: #3F2232;
     --lilac: #B9A7EA;
     --lilac-soft: #2C2541;
-    --candy-ink: #F592BE;
-    --btn-rose: #EE8F89;
-    --btn-candy: #F592BE;
+    --candy-ink: var(--candy);
+    --btn-rose: var(--rose);
+    --lilac-ink: var(--lilac);
     --on-accent: #2A1820;
     --near: #C49D45;
     --miss: #54444C;
@@ -151,6 +152,7 @@ p { margin: 0; }
   font-size: 1.125rem;
   font-weight: 500;
   line-height: 1.15;
+  text-transform: lowercase;
   color: var(--muted);
 }
 .head > .label, .sub > .label, .list > .label, .bias > .label {
@@ -353,7 +355,7 @@ html[data-bg="dots"] body { background-image: var(--g-heart), var(--g-dots); bac
 .icon-btn:active { transform: scale(.92); }
 .icon-btn svg { width: 18px; height: 18px; fill: currentColor; }
 .icon-btn.main { background: var(--ink); color: var(--paper); }
-.icon-btn.main:hover { background: var(--btn-candy); color: var(--on-accent); }
+.icon-btn.main:hover { background: var(--candy-ink); color: var(--on-accent); }
 .queue { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
 .song {
   display: grid; grid-template-columns: 34px 38px minmax(0, 1fr) auto; gap: 10px; align-items: center;
@@ -366,7 +368,7 @@ html[data-bg="dots"] body { background-image: var(--g-heart), var(--g-dots); bac
 }
 .song .pp:active { transform: scale(.9); }
 .song .pp svg { width: 14px; height: 14px; fill: currentColor; }
-.song.on .pp { background: var(--btn-candy); color: var(--on-accent); border-color: transparent; }
+.song.on .pp { background: var(--candy-ink); color: var(--on-accent); border-color: transparent; }
 .song .art { width: 38px; height: 38px; border-radius: 6px; object-fit: cover; background: var(--candy-soft); display: block; }
 .song .meta { min-width: 0; display: grid; gap: 1px; }
 .song .st { font-size: .875rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -417,7 +419,7 @@ section.block { padding-block: 56px; border-top: 1px solid var(--line); display:
 .btn:hover .arr { transform: translateX(3px); }
 .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
 .btn.ghost:hover { background: var(--candy-soft); }
-.btn.candy { background: var(--btn-candy); }
+.btn.candy { background: var(--candy-ink); }
 
 .cinema { background: #120D10; border-radius: var(--radius); padding: 18px 18px 14px; display: grid; gap: 12px; position: relative; overflow: hidden; }
 .cinema::before, .cinema::after {
@@ -458,7 +460,7 @@ section.block { padding-block: 56px; border-top: 1px solid var(--line); display:
 .poster h3 { font-size: 1.125rem; }
 .poster .dir { font-size: .75rem; opacity: .8; }
 .poster .ribbon {
-  position: absolute; top: 10px; right: -30px; transform: rotate(35deg); background: var(--btn-candy); color: var(--on-accent);
+  position: absolute; top: 10px; right: -30px; transform: rotate(35deg); background: var(--candy-ink); color: var(--on-accent);
   font-size: .625rem; font-weight: 600; letter-spacing: .1em; padding: 3px 34px; z-index: 1;
 }
 
@@ -508,7 +510,8 @@ section.block { padding-block: 56px; border-top: 1px solid var(--line); display:
 /* sweets */
 /* a sprinkles-on-pink panel, like a bakery box */
 .dessert-panel {
-  position: relative; display: grid; gap: 18px; padding: clamp(18px, 3vw, 26px); border-radius: 24px; overflow: hidden; max-width: 700px;
+  --pad: clamp(18px, 3vw, 26px);
+  position: relative; display: grid; gap: 18px; padding: var(--pad); border-radius: 24px; overflow: hidden; max-width: 700px;
   background-color: var(--candy-soft);
   background-image:
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg stroke-width='4' stroke-linecap='round' opacity='.3'%3E%3Cpath stroke='%23E5679E' d='M14 20l10 6'/%3E%3Cpath stroke='%238C78C2' d='M62 12l-4 11'/%3E%3Cpath stroke='%23DDB45A' d='M104 30l11-3'/%3E%3Cpath stroke='%236F9E7C' d='M30 70l3 11'/%3E%3Cpath stroke='%23CF6B6E' d='M80 64l9 7'/%3E%3Cpath stroke='%238C78C2' d='M122 82l-10 5'/%3E%3Cpath stroke='%23DDB45A' d='M18 118l11-2'/%3E%3Cpath stroke='%23E5679E' d='M66 112l-6 9'/%3E%3Cpath stroke='%236F9E7C' d='M108 120l8 8'/%3E%3C/g%3E%3C/svg%3E"),
@@ -545,11 +548,17 @@ section.block { padding-block: 56px; border-top: 1px solid var(--line); display:
   .dessert-panel .gallery {
     grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 74%;
     overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
-    margin-inline: calc(-1 * clamp(18px, 3vw, 26px)); padding-inline: clamp(18px, 3vw, 26px);
-    scroll-padding-inline: clamp(18px, 3vw, 26px); scrollbar-width: none;
+    margin-inline: calc(-1 * var(--pad)); padding-inline: var(--pad);
+    scroll-padding-inline: var(--pad); scrollbar-width: none;
   }
   .dessert-panel .gallery::-webkit-scrollbar { display: none; }
   .dessert-panel .gallery figure { scroll-snap-align: start; }
+}
+/* narrow window without a touch screen: show a thin pink scrollbar so the row is clearly scrollable */
+@media (max-width: 600px) and (hover: hover) and (pointer: fine) {
+  .dessert-panel .gallery { scrollbar-width: thin; scrollbar-color: var(--candy) transparent; padding-bottom: 8px; }
+  .dessert-panel .gallery::-webkit-scrollbar { display: block; height: 6px; }
+  .dessert-panel .gallery::-webkit-scrollbar-thumb { background: var(--candy); border-radius: 3px; }
 }
 
 /* games live inside the sections they belong to */
@@ -567,7 +576,7 @@ section.block { padding-block: 56px; border-top: 1px solid var(--line); display:
 .game-head h3 { font-size: 1.3rem; }
 .game-head p { color: var(--ink); opacity: .75; font-size: .875rem; }
 .game-tag {
-  font-family: var(--hand); font-weight: 700; font-size: 1rem; color: var(--on-tile); background: var(--lilac);
+  font-family: var(--hand); font-weight: 700; font-size: 1rem; color: var(--on-accent); background: var(--lilac-ink);
   padding: 0 12px; border-radius: 999px; transform: rotate(-3deg); box-shadow: 0 4px 10px color-mix(in srgb, var(--lilac) 40%, transparent);
 }
 .legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: .875rem; }
@@ -725,7 +734,7 @@ html.intro .pin-note, html.intro .note-tab { display: none; }
 .cell.filled { border-color: var(--lilac); transform: scale(1.06); animation: pop-in .14s ease; }
 @keyframes pop-in { 50% { transform: scale(1.14); } }
 .cell.hit, .cell.near, .cell.miss { color: var(--on-tile); border-color: transparent; animation: flip .5s ease both; box-shadow: 0 3px 0 rgb(0 0 0 / .12); }
-.cell.hit { background: var(--hit); } .cell.near { background: var(--near); } .cell.miss { background: var(--miss); }
+.cell.hit { background: var(--hit); } .cell.near { background: var(--near); color: var(--on-near); } .cell.miss { background: var(--miss); }
 @keyframes flip { 0% { transform: rotateX(0); } 50% { transform: rotateX(90deg); } 100% { transform: rotateX(0); } }
 .keys { display: grid; gap: 5px; width: 100%; max-width: 330px; }
 .keys .krow { display: flex; gap: 3px; justify-content: center; }
@@ -739,7 +748,7 @@ html.intro .pin-note, html.intro .note-tab { display: none; }
 .key:hover { background: var(--surface); }
 .key:active { transform: translateY(3px); box-shadow: none; }
 .key.hit { background: var(--hit); color: var(--on-tile); }
-.key.near { background: var(--near); color: var(--on-tile); }
+.key.near { background: var(--near); color: var(--on-near); }
 .key.miss { background: var(--miss); color: var(--on-tile); }
 .score { font-size: var(--step--1); font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums; }
 
@@ -791,7 +800,7 @@ html.intro .pin-note, html.intro .note-tab { display: none; }
 /* toast */
 .toast {
   position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
-  background: var(--lilac); color: var(--on-tile); padding: 10px 18px; border-radius: 999px; font-weight: 500; z-index: 60;
+  background: var(--lilac-ink); color: var(--on-accent); padding: 10px 18px; border-radius: 999px; font-weight: 500; z-index: 60;
   box-shadow: 0 8px 24px rgb(0 0 0 / .2); animation: pop 3.2s ease forwards; max-width: calc(100% - 32px); text-align: center;
 }
 .heart-rain { position: fixed; top: -30px; pointer-events: none; z-index: 55; font-size: 22px; animation: fall linear forwards; }
@@ -862,8 +871,8 @@ html.intro .load > * { animation-name: none; opacity: 0; }
 /* touch screens: fingers need bigger targets than a mouse */
 @media (pointer: coarse) {
   .bg-btn, .icon-btn { width: 44px; height: 44px; }
-  .song { grid-template-columns: 40px 38px minmax(0, 1fr) auto; }
-  .song .pp { width: 40px; height: 40px; }
+  .song { grid-template-columns: 44px 38px minmax(0, 1fr) auto; }
+  .song .pp { width: 44px; height: 44px; }
   .keys { max-width: 380px; }
   .keys .krow { gap: 4px; }
   .key { max-width: 36px; height: 46px; font-size: .875rem; }
@@ -1137,7 +1146,7 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
           </div>
         </div>
 
-        <div class="gallery">
+        <div class="gallery" tabindex="0" aria-label="dessert photos (scrolls sideways)">
           <figure><div class="slot" data-src="images/food/1.jpg" data-alt="Chocolate cake with ice cream, Happy Birthday Maa written in chocolate"></div><figcaption>chocolate cake for maa's birthday</figcaption></figure>
           <figure><div class="slot" data-src="images/food/2.jpg" data-alt="A cup of DBC, death by chocolate ice cream, with nuts and a cherry"></div><figcaption>DBC, death by chocolate</figcaption></figure>
           <figure><div class="slot" data-src="images/food/3.jpg" data-alt="A raj kachori topped with curd, chutney and sev"></div><figcaption>raj kachori (a savory break)</figcaption></figure>
@@ -1802,29 +1811,41 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--line); color: var
 
   /* pinned note: open on wide screens, folded into a little tab on smaller ones */
   const pin = $("#pin-note"), tab = $("#note-tab");
-  let pinOpen = matchMedia("(min-width: 1500px)").matches, pinThought = null;
+  const wide = matchMedia("(min-width: 1500px)");   // keep in step with the max-width: 1499px rule in the CSS
+  let pinOpen = wide.matches, pinThought = null;
   function setPin(t) {
     pinThought = t;
     if (t) { $("#pin-body").textContent = t.body; stamp($("#pin-time"), t); }
     syncPin();
   }
+  $("#pin-close").addEventListener("click", () => { pinOpen = false; syncPin(); tab.focus(); });
+  tab.addEventListener("click", () => { pinOpen = true; syncPin(); });
+  pin.querySelector(".more").addEventListener("click", () => { if (!wide.matches) { pinOpen = false; syncPin(); } });
+  /* step aside while the full wall of notes is on screen; on smaller screens also while a game is,
+     unless the visitor opened the note themselves (then it stays until they close it) */
+  const inView = new Set(), thoughtsEl = $("#thoughts");
+  let thoughtsVisible = false;
+  function syncTuck() {
+    const gameVisible = inView.size > 0;
+    const tuck = thoughtsVisible || (!wide.matches && gameVisible && !pinOpen);
+    pin.classList.toggle("tucked", tuck);
+    tab.classList.toggle("tucked", tuck);
+  }
   function syncPin() {
     pin.hidden = !pinThought || !pinOpen;
     tab.hidden = !pinThought || pinOpen;
+    syncTuck();
   }
-  $("#pin-close").addEventListener("click", () => { pinOpen = false; syncPin(); tab.focus(); });
-  tab.addEventListener("click", () => { pinOpen = true; syncPin(); });
-  pin.querySelector(".more").addEventListener("click", () => { if (!matchMedia("(min-width: 1500px)").matches) { pinOpen = false; syncPin(); } });
-  if ("IntersectionObserver" in window) {   // step aside while the full wall of notes, or a game, is on screen
-    const inView = new Set();
+  wide.addEventListener("change", () => { pinOpen = wide.matches; syncPin(); });   // window resized or device rotated
+  if ("IntersectionObserver" in window) {
     const tuckIO = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { e.isIntersecting ? inView.add(e.target) : inView.delete(e.target); });
-      const narrow = !matchMedia("(min-width: 1500px)").matches;
-      const tuck = inView.has($("#thoughts")) || (narrow && [...inView].some((el) => el.classList.contains("game-card")));
-      pin.classList.toggle("tucked", tuck);
-      tab.classList.toggle("tucked", tuck);
+      entries.forEach((e) => {
+        if (e.target === thoughtsEl) thoughtsVisible = e.isIntersecting;
+        else e.isIntersecting ? inView.add(e.target) : inView.delete(e.target);
+      });
+      syncTuck();
     }, { threshold: 0.15 });
-    tuckIO.observe($("#thoughts"));
+    tuckIO.observe(thoughtsEl);
     document.querySelectorAll(".game-card").forEach((g) => tuckIO.observe(g));
   }
   async function loadThoughts() {
