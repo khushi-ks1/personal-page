@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
+<!-- security: this page may only run its own script (by hash: update it if the script changes) and only talk to GitHub's API -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-xh5vGPDCnLTqHLm9bQ3BROZ2UWiN8OB/itfOcWHHBZk='; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src https://api.github.com; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
 <title>Write a Thought</title>
 <meta name="theme-color" content="#FBF6F4">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -87,7 +90,7 @@ code { font-family: var(--mono); font-size: .8125rem; background: var(--candy-so
     <ol>
       <li><a id="token-link" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Open GitHub's "new token" page ↗</a>
         <small>Log in if it asks.</small></li>
-      <li>Name it <b>thoughts</b>, and set <b>Expiration</b> to <b>No expiration</b> (or a year).</li>
+      <li>Name it <b>thoughts</b>, and set <b>Expiration</b> to <b>90 days</b>. When it runs out, this page will tell you, and you just make a new one.</li>
       <li>Under <b>Repository access</b>, pick <b>Only select repositories</b> → <b>personal-page</b>.</li>
       <li>Under <b>Permissions → Repository permissions</b>, set <b>Contents</b> to <b>Read and write</b>. Leave everything else alone.</li>
       <li>Tap <b>Generate token</b>, copy it (it starts with <code>github_pat_</code>) and paste it here:</li>
